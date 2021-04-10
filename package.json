@@ -1,7 +1,7 @@
 {
   "name": "unity-toolbox",
   "displayName": "Unity Toolbox",
-  "description": "Makes using Unity and VSCode a lovely experience.",
+  "description": "Makes using Unity with VSCode a lovely experience.",
   "publisher": "pixl",
   "version": "0.0.1",
   "engines": {
