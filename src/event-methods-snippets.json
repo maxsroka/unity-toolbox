@@ -3,455 +3,650 @@
         "description": "Awake is called when the script instance is being loaded.",
         "prefix": "Awake",
         "body": [
-            ""
+            "void Awake()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "FixedUpdate": {
         "prefix": "FixedUpdate",
         "description": "Frame-rate independent MonoBehaviour. FixedUpdate message for physics calculations.",
         "body": [
-            ""
+            "void FixedUpdate()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "LateUpdate": {
         "prefix": "LateUpdate",
         "description": "LateUpdate is called every frame, if the Behaviour is enabled.",
         "body": [
-            ""
+            "void LateUpdate()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnAnimatorIK": {
         "prefix": "OnAnimatorIK",
         "description": "Callback for setting up animation IK (inverse kinematics).",
         "body": [
-            ""
+            "void OnAnimatorIK()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnAnimatorMove": {
         "prefix": "OnAnimatorMove",
         "description": "Callback for processing animation movements for modifying root motion.",
         "body": [
-            ""
+            "void OnAnimatorMove()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnApplicationFocus": {
         "prefix": "OnApplicationFocus",
         "description": "Sent to all GameObjects when the player gets or loses focus.",
         "body": [
-            ""
+            "void OnApplicationFocus()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnApplicationPause": {
         "prefix": "OnApplicationPause",
         "description": "Sent to all GameObjects when the application pauses.",
         "body": [
-            ""
+            "void OnApplicationPause()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnApplicationQuit": {
         "prefix": "OnApplicationQuit",
         "description": "Sent to all GameObjects before the application quits.",
         "body": [
-            ""
+            "void OnApplicationQuit()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnAudioFilterRead": {
         "prefix": "OnAudioFilterRead",
         "description": "If OnAudioFilterRead is implemented, Unity will insert a custom filter into the audio DSP chain.",
         "body": [
-            ""
+            "void OnAudioFilterRead()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnBecameInvisible": {
         "prefix": "OnBecameInvisible",
         "description": "OnBecameInvisible is called when the renderer is no longer visible by any camera.",
         "body": [
-            ""
+            "void OnBecameInvisible()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnBecameVisible": {
         "prefix": "OnBecameVisible",
         "description": "OnBecameVisible is called when the renderer became visible by any camera.",
         "body": [
-            ""
+            "void OnBecameVisible()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnCollisionEnter": {
         "prefix": "OnCollisionEnter",
         "description": "OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.",
         "body": [
-            ""
+            "void OnCollisionEnter()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnCollisionEnter2D": {
         "prefix": "OnCollisionEnter2D",
         "description": "Sent when an incoming collider makes contact with this object's collider (2D physics only).",
         "body": [
-            ""
+            "void OnCollisionEnter2D()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnCollisionExit": {
         "prefix": "OnCollisionExit",
         "description": "OnCollisionExit is called when this collider/rigidbody has stopped touching another rigidbody/collider.",
         "body": [
-            ""
+            "void OnCollisionExit()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnCollisionExit2D": {
         "prefix": "OnCollisionExit2D",
         "description": "Sent when a collider on another object stops touching this object's collider (2D physics only).",
         "body": [
-            ""
+            "void OnCollisionExit2D()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnCollisionStay": {
         "prefix": "OnCollisionStay",
         "description": "OnCollisionStay is called once per frame for every collider/rigidbody that is touching rigidbody/collider.",
         "body": [
-            ""
+            "void OnCollisionStay()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnCollisionStay2D": {
         "prefix": "OnCollisionStay2D",
         "description": "Sent each frame where a collider on another object is touching this object's collider (2D physics only).",
         "body": [
-            ""
+            "void OnCollisionStay2D()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnConnectedToServer": {
         "prefix": "OnConnectedToServer",
         "description": "Called on the client when you have successfully connected to a server.",
         "body": [
-            ""
+            "void OnConnectedToServer()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnControllerColliderHit": {
         "prefix": "OnControllerColliderHit",
         "description": "OnControllerColliderHit is called when the controller hits a collider while performing a Move.",
         "body": [
-            ""
+            "void OnControllerColliderHit()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnDestroy": {
         "prefix": "OnDestroy",
         "description": "Destroying the attached Behaviour will result in the game or Scene receiving OnDestroy.",
         "body": [
-            ""
+            "void OnDestroy()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnDisable": {
         "prefix": "OnDisable",
         "description": "This function is called when the behaviour becomes disabled.",
         "body": [
-            ""
+            "void OnDisable()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnDisconnectedFromServer": {
         "prefix": "OnDisconnectedFromServer",
         "description": "Called on the client when the connection was lost or you disconnected from the server.",
         "body": [
-            ""
+            "void OnDisconnectedFromServer()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnDrawGizmos": {
         "prefix": "OnDrawGizmos",
         "description": "Implement OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn.",
         "body": [
-            ""
+            "void OnDrawGizmos()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnDrawGizmosSelected": {
         "prefix": "OnDrawGizmosSelected",
         "description": "Implement OnDrawGizmosSelected to draw a gizmo if the object is selected.",
         "body": [
-            ""
+            "void OnDrawGizmosSelected()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnEnable": {
         "prefix": "OnEnable",
         "description": "This function is called when the object becomes enabled and active.",
         "body": [
-            ""
+            "void OnEnable()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnFailedToConnect": {
         "prefix": "OnFailedToConnect",
         "description": "Called on the client when a connection attempt fails for some reason.",
         "body": [
-            ""
+            "void OnFailedToConnect()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnFailedToConnectToMasterServer": {
         "prefix": "OnFailedToConnectToMasterServer",
         "description": "Called on clients or servers when there is a problem connecting to the MasterServer.",
         "body": [
-            ""
+            "void OnFailedToConnectToMasterServer()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnGUI": {
         "prefix": "OnGUI",
         "description": "OnGUI is called for rendering and handling GUI events.",
         "body": [
-            ""
+            "void OnGUI()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnJointBreak": {
         "prefix": "OnJointBreak",
         "description": "Called when a joint attached to the same game object broke.",
         "body": [
-            ""
+            "void OnJointBreak()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnJointBreak2D": {
         "prefix": "OnJointBreak2D",
         "description": "Called when a Joint2D attached to the same game object breaks.",
         "body": [
-            ""
+            "void OnJointBreak2D()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnMasterServerEvent": {
         "prefix": "OnMasterServerEvent",
         "description": "Called on clients or servers when reporting events from the MasterServer.",
         "body": [
-            ""
+            "void OnMasterServerEvent()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnMouseDown": {
         "prefix": "OnMouseDown",
         "description": "OnMouseDown is called when the user has pressed the mouse button while over the Collider.",
         "body": [
-            ""
+            "void OnMouseDown()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnMouseDrag": {
         "prefix": "OnMouseDrag",
         "description": "OnMouseDrag is called when the user has clicked on a Collider and is still holding down the mouse.",
         "body": [
-            ""
+            "void OnMouseDrag()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnMouseEnter": {
         "prefix": "OnMouseEnter",
         "description": "Called when the mouse enters the Collider.",
         "body": [
-            ""
+            "void OnMouseEnter()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnMouseExit": {
         "prefix": "OnMouseExit",
         "description": "Called when the mouse is not any longer over the Collider.",
         "body": [
-            ""
+            "void OnMouseExit()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnMouseOver": {
         "prefix": "OnMouseOver",
         "description": "Called every frame while the mouse is over the Collider.",
         "body": [
-            ""
+            "void OnMouseOver()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnMouseUp": {
         "prefix": "OnMouseUp",
         "description": "OnMouseUp is called when the user has released the mouse button.",
         "body": [
-            ""
+            "void OnMouseUp()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnMouseUpAsButton": {
         "prefix": "OnMouseUpAsButton",
         "description": "OnMouseUpAsButton is only called when the mouse is released over the same Collider as it was pressed.",
         "body": [
-            ""
+            "void OnMouseUpAsButton()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnNetworkInstantiate": {
         "prefix": "OnNetworkInstantiate",
         "description": "Called on objects which have been network instantiated with Network.Instantiate.",
         "body": [
-            ""
+            "void OnNetworkInstantiate()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnParticleCollision": {
         "prefix": "OnParticleCollision",
         "description": "OnParticleCollision is called when a particle hits a Collider.",
         "body": [
-            ""
+            "void OnParticleCollision()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnParticleSystemStopped": {
         "prefix": "OnParticleSystemStopped",
         "description": "OnParticleSystemStopped is called when all particles in the system have died, and no new particles will be born. New particles cease to be created either after Stop is called, or when the duration property of a non-looping system has been exceeded.",
         "body": [
-            ""
+            "void OnParticleSystemStopped()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnParticleTrigger": {
         "prefix": "OnParticleTrigger",
         "description": "OnParticleTrigger is called when any particles in a Particle System meet the conditions in the trigger module.",
         "body": [
-            ""
+            "void OnParticleTrigger()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnParticleUpdateJobScheduled": {
         "prefix": "OnParticleUpdateJobScheduled",
         "description": "OnParticleUpdateJobScheduled is called when a Particle System's built-in update job has been scheduled.",
         "body": [
-            ""
+            "void OnParticleUpdateJobScheduled()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnPlayerConnected": {
         "prefix": "OnPlayerConnected",
-        "description": "",
+        "description": "Called on the server whenever a new player has successfully connected.",
         "body": [
-            "Called on the server whenever a new player has successfully connected."
+            "void OnPlayerConnected()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnPlayerDisconnected": {
         "prefix": "OnPlayerDisconnected",
         "description": "Called on the server whenever a player disconnected from the server.",
         "body": [
-            ""
+            "void OnPlayerDisconnected()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnPostRender": {
         "prefix": "OnPostRender",
         "description": "Event function that Unity calls after a Camera renders the scene.",
         "body": [
-            "Event function that Unity calls before a Camera culls the scene."
+            "void OnPostRender()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnPreCull": {
         "prefix": "OnPreCull",
         "description": "Event function that Unity calls before a Camera renders the scene.",
         "body": [
-            ""
+            "void OnPreCull()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnPreRender": {
         "prefix": "OnPreRender",
         "description": "Event function that Unity calls after a Camera has finished rendering, that allows you to modify the Camera's final image.",
         "body": [
-            ""
+            "void OnPreRender()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnRenderImage": {
         "prefix": "OnRenderImage",
         "description": "Event function that Unity calls after a Camera has finished rendering, that allows you to modify the Camera's final image.",
         "body": [
-            ""
+            "void OnRenderImage()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnRenderObject": {
         "prefix": "OnRenderObject",
         "description": "OnRenderObject is called after camera has rendered the Scene.",
         "body": [
-            ""
+            "void OnRenderObject()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnSerializeNetworkView": {
         "prefix": "OnSerializeNetworkView",
         "description": "Used to customize synchronization of variables in a script watched by a network view.",
         "body": [
-            ""
+            "void OnSerializeNetworkView()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnServerInitialized": {
         "prefix": "OnServerInitialized",
         "description": "Called on the server whenever a Network.InitializeServer was invoked and has completed.",
         "body": [
-            ""
+            "void OnServerInitialized()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnTransformChildrenChanged": {
         "prefix": "OnTransformChildrenChanged",
         "description": "This function is called when the list of children of the transform of the GameObject has changed.",
         "body": [
-            ""
+            "void OnTransformChildrenChanged()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnTransformParentChanged": {
         "prefix": "OnTransformParentChanged",
         "description": "This function is called when the parent property of the transform of the GameObject has changed.",
         "body": [
-            ""
+            "void OnTransformParentChanged()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnTriggerEnter": {
         "prefix": "OnTriggerEnter",
         "description": "When a GameObject collides with another GameObject, Unity calls OnTriggerEnter.",
         "body": [
-            ""
+            "void OnTriggerEnter()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnTriggerEnter2D": {
         "prefix": "OnTriggerEnter2D",
         "description": "Sent when another object enters a trigger collider attached to this object (2D physics only).",
         "body": [
-            ""
+            "void OnTriggerEnter2D()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnTriggerExit": {
         "prefix": "OnTriggerExit",
         "description": "OnTriggerExit is called when the Collider other has stopped touching the trigger.",
         "body": [
-            ""
+            "void OnTriggerExit()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnTriggerExit2D": {
         "prefix": "OnTriggerExit2D",
         "description": "Sent when another object leaves a trigger collider attached to this object (2D physics only).",
         "body": [
-            ""
+            "void OnTriggerExit2D()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnTriggerStay": {
         "prefix": "OnTriggerStay",
         "description": "OnTriggerStay is called once per physics update for every Collider other that is touching the trigger.",
         "body": [
-            ""
+            "void OnTriggerStay()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnTriggerStay2D": {
         "prefix": "OnTriggerStay2D",
         "description": "Sent each frame where another object is within a trigger collider attached to this object (2D physics only).",
         "body": [
-            ""
+            "void OnTriggerStay2D()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnValidate": {
         "prefix": "OnValidate",
         "description": "This function is called when the script is loaded or a value is changed in the Inspector (Called in the editor only).",
         "body": [
-            ""
+            "void OnValidate()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "OnWillRenderObject": {
         "prefix": "OnWillRenderObject",
         "description": "OnWillRenderObject is called for each camera if the object is visible and not a UI element.",
         "body": [
-            ""
+            "void OnWillRenderObject()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "Reset": {
         "prefix": "Reset",
         "description": "Reset to default values.",
         "body": [
-            ""
+            "void Reset()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "Start": {
         "prefix": "Start",
         "description": "Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.",
         "body": [
-            ""
+            "void Start()",
+            "{",
+            "    $0",
+            "}"
         ]
     },
     "Update": {
         "prefix": "Update",
         "description": "Update is called every frame, if the MonoBehaviour is enabled.",
         "body": [
-            ""
+            "void Update()",
+            "{",
+            "    $0",
+            "}"
         ]
     }
 }
