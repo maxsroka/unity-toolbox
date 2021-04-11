@@ -1,8 +1,7 @@
 import * as vscode from 'vscode';
-import * as eventMethodSnippets from '../event-methods-snippets.json'
+import * as eventMethodSnippets from '../snippets/event-methods-snippets.json'
 
 export class CodeLens implements vscode.CodeLensProvider {
-
     private codeLenses: vscode.CodeLens[] = [];
     private regex: RegExp;
     private _onDidChangeCodeLenses: vscode.EventEmitter<void> = new vscode.EventEmitter<void>();
@@ -35,7 +34,7 @@ export class CodeLens implements vscode.CodeLensProvider {
             const text = document.getText();
             this.document = document;
 
-            if (text.match(/:\s*MonoBehaviour/)) {
+            if (text.match(/:\s*(Mono|Network)Behaviour/)) {
                 let matches;
                 while ((matches = regex.exec(text)) !== null) {
                     const line = document.lineAt(document.positionAt(matches.index).line);

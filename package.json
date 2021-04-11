@@ -42,11 +42,11 @@
     "snippets": [
       {
         "language": "csharp",
-        "path": "./src/event-methods-snippets.json"
+        "path": "./src/snippets/event-methods-snippets.json"
       },
       {
         "language": "csharp",
-        "path": "./src/other-snippets.json"
+        "path": "./src/snippets/other-snippets.json"
       }
     ],
     "commands": [
