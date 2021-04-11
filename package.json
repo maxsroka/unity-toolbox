@@ -1,10 +1,9 @@
 {
   "name": "unity-toolbox",
-  "version": "1.0.0",
-  "preview": true,
+  "version": "1.0.1",
   "publisher": "pixl",
   "displayName": "Unity Toolbox",
-  "description": "Makes using Unity with VSCode a lovely experience.",
+  "description": "Makes using Unity with VSCode a better experience.",
   "license": "SEE LICENSE IN LICENSE",
   "repository": {
     "type": "git",
