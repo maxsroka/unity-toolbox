@@ -1,6 +1,6 @@
 {
   "name": "unity-toolbox",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "pixl",
   "displayName": "Unity Toolbox",
   "description": "Makes using Unity with VSCode a better experience.",
