@@ -29,7 +29,7 @@
     "OnAnimatorIK": {
         "prefix": "OnAnimatorIK",
         "body": [
-            "void OnAnimatorIK()",
+            "void OnAnimatorIK(int layerIndex)",
             "{",
             "    $0",
             "}"
@@ -47,7 +47,7 @@
     "OnApplicationFocus": {
         "prefix": "OnApplicationFocus",
         "body": [
-            "void OnApplicationFocus()",
+            "void OnApplicationFocus(bool hasFocus)",
             "{",
             "    $0",
             "}"
@@ -56,7 +56,7 @@
     "OnApplicationPause": {
         "prefix": "OnApplicationPause",
         "body": [
-            "void OnApplicationPause()",
+            "void OnApplicationPause(bool pauseStatus)",
             "{",
             "    $0",
             "}"
@@ -74,7 +74,7 @@
     "OnAudioFilterRead": {
         "prefix": "OnAudioFilterRead",
         "body": [
-            "void OnAudioFilterRead()",
+            "void OnAudioFilterRead(float[] data, int channels)",
             "{",
             "    $0",
             "}"
@@ -101,7 +101,7 @@
     "OnCollisionEnter": {
         "prefix": "OnCollisionEnter",
         "body": [
-            "void OnCollisionEnter()",
+            "void OnCollisionEnter(Collision collision)",
             "{",
             "    $0",
             "}"
@@ -110,7 +110,7 @@
     "OnCollisionEnter2D": {
         "prefix": "OnCollisionEnter2D",
         "body": [
-            "void OnCollisionEnter2D()",
+            "void OnCollisionEnter2D(Collision2D other)",
             "{",
             "    $0",
             "}"
@@ -119,7 +119,7 @@
     "OnCollisionExit": {
         "prefix": "OnCollisionExit",
         "body": [
-            "void OnCollisionExit()",
+            "void OnCollisionExit(Collision other)",
             "{",
             "    $0",
             "}"
@@ -128,7 +128,7 @@
     "OnCollisionExit2D": {
         "prefix": "OnCollisionExit2D",
         "body": [
-            "void OnCollisionExit2D()",
+            "void OnCollisionExit2D(Collision2D other)",
             "{",
             "    $0",
             "}"
@@ -137,7 +137,7 @@
     "OnCollisionStay": {
         "prefix": "OnCollisionStay",
         "body": [
-            "void OnCollisionStay()",
+            "void OnCollisionStay(Collision other)",
             "{",
             "    $0",
             "}"
@@ -146,7 +146,7 @@
     "OnCollisionStay2D": {
         "prefix": "OnCollisionStay2D",
         "body": [
-            "void OnCollisionStay2D()",
+            "void OnCollisionStay2D(Collision2D collision)",
             "{",
             "    $0",
             "}"
@@ -164,7 +164,7 @@
     "OnControllerColliderHit": {
         "prefix": "OnControllerColliderHit",
         "body": [
-            "void OnControllerColliderHit()",
+            "void OnControllerColliderHit(ControllerColliderHit hit)",
             "{",
             "    $0",
             "}"
@@ -191,7 +191,7 @@
     "OnDisconnectedFromServer": {
         "prefix": "OnDisconnectedFromServer",
         "body": [
-            "void OnDisconnectedFromServer()",
+            "void OnDisconnectedFromServer(NetworkDisconnection info)",
             "{",
             "    $0",
             "}"
@@ -227,7 +227,7 @@
     "OnFailedToConnect": {
         "prefix": "OnFailedToConnect",
         "body": [
-            "void OnFailedToConnect()",
+            "void OnFailedToConnect(NetworkConnectionError error)",
             "{",
             "    $0",
             "}"
@@ -236,7 +236,7 @@
     "OnFailedToConnectToMasterServer": {
         "prefix": "OnFailedToConnectToMasterServer",
         "body": [
-            "void OnFailedToConnectToMasterServer()",
+            "void OnFailedToConnectToMasterServer(NetworkConnectionError error)",
             "{",
             "    $0",
             "}"
@@ -254,7 +254,7 @@
     "OnJointBreak": {
         "prefix": "OnJointBreak",
         "body": [
-            "void OnJointBreak()",
+            "void OnJointBreak(float breakForce)",
             "{",
             "    $0",
             "}"
@@ -263,7 +263,7 @@
     "OnJointBreak2D": {
         "prefix": "OnJointBreak2D",
         "body": [
-            "void OnJointBreak2D()",
+            "void OnJointBreak2D(Joint2D brokenJoint)",
             "{",
             "    $0",
             "}"
@@ -272,7 +272,7 @@
     "OnMasterServerEvent": {
         "prefix": "OnMasterServerEvent",
         "body": [
-            "void OnMasterServerEvent()",
+            "void OnMasterServerEvent(MasterServerEvent event)",
             "{",
             "    $0",
             "}"
@@ -344,7 +344,7 @@
     "OnNetworkInstantiate": {
         "prefix": "OnNetworkInstantiate",
         "body": [
-            "void OnNetworkInstantiate()",
+            "void OnNetworkInstantiate(NetworkMessageInfo info)",
             "{",
             "    $0",
             "}"
@@ -353,7 +353,7 @@
     "OnParticleCollision": {
         "prefix": "OnParticleCollision",
         "body": [
-            "void OnParticleCollision()",
+            "void OnParticleCollision(GameObject other)",
             "{",
             "    $0",
             "}"
@@ -389,7 +389,7 @@
     "OnPlayerConnected": {
         "prefix": "OnPlayerConnected",
         "body": [
-            "void OnPlayerConnected()",
+            "void OnPlayerConnected(NetworkPlayer player)",
             "{",
             "    $0",
             "}"
@@ -398,7 +398,7 @@
     "OnPlayerDisconnected": {
         "prefix": "OnPlayerDisconnected",
         "body": [
-            "void OnPlayerDisconnected()",
+            "void OnPlayerDisconnected(NetworkPlayer player)",
             "{",
             "    $0",
             "}"
@@ -434,7 +434,7 @@
     "OnRenderImage": {
         "prefix": "OnRenderImage",
         "body": [
-            "void OnRenderImage()",
+            "void OnRenderImage(RenderTexture src, RenderTexture dest)",
             "{",
             "    $0",
             "}"
@@ -452,7 +452,7 @@
     "OnSerializeNetworkView": {
         "prefix": "OnSerializeNetworkView",
         "body": [
-            "void OnSerializeNetworkView()",
+            "void OnSerializeNetworkView(BitStream stream, NetworkMessageInfo info)",
             "{",
             "    $0",
             "}"
@@ -488,7 +488,7 @@
     "OnTriggerEnter": {
         "prefix": "OnTriggerEnter",
         "body": [
-            "void OnTriggerEnter()",
+            "void OnTriggerEnter(Collider other)",
             "{",
             "    $0",
             "}"
@@ -497,7 +497,7 @@
     "OnTriggerEnter2D": {
         "prefix": "OnTriggerEnter2D",
         "body": [
-            "void OnTriggerEnter2D()",
+            "void OnTriggerEnter2D(Collider2D other)",
             "{",
             "    $0",
             "}"
@@ -506,7 +506,7 @@
     "OnTriggerExit": {
         "prefix": "OnTriggerExit",
         "body": [
-            "void OnTriggerExit()",
+            "void OnTriggerExit(Collider other)",
             "{",
             "    $0",
             "}"
@@ -515,7 +515,7 @@
     "OnTriggerExit2D": {
         "prefix": "OnTriggerExit2D",
         "body": [
-            "void OnTriggerExit2D()",
+            "void OnTriggerExit2D(Collider2D other)",
             "{",
             "    $0",
             "}"
@@ -524,7 +524,7 @@
     "OnTriggerStay": {
         "prefix": "OnTriggerStay",
         "body": [
-            "void OnTriggerStay()",
+            "void OnTriggerStay(Collider other)",
             "{",
             "    $0",
             "}"
@@ -533,7 +533,7 @@
     "OnTriggerStay2D": {
         "prefix": "OnTriggerStay2D",
         "body": [
-            "void OnTriggerStay2D()",
+            "void OnTriggerStay2D(Collider2D other)",
             "{",
             "    $0",
             "}"
