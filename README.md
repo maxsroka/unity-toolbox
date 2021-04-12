@@ -1,6 +1,4 @@
 <img src="https://github.com/pixldev/Unity-Toolbox/blob/main/showcase.gif">
-<h2>Installation</h2>
-<a href="https://marketplace.visualstudio.com/items?itemName=pixl.unity-toolbox">Install from the Marketplace</a>
 <h2>Features</h2>
 <ul><b>
 <li>CodeLens for event methods</li>
