@@ -56,8 +56,8 @@ export class CodeLens implements vscode.CodeLensProvider {
             if (vscode.workspace.getConfiguration("unityToolbox").get("codeLensForUnityEventMethods", true)) {
                 let url = this.document.lineAt(codeLens.range.start.line).text;
                 url = url.replace(/ /g, "")
-                url = url.replace(/void/g, "")
-                url = url.slice(0, -2);
+                url = url.replace(/(?:private)?void/g, "")
+                url = url.slice(0, url.indexOf('(') - url.length);
 
                 codeLens.command = {
                     title: "Unity Event",
