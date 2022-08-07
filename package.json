@@ -25,20 +25,10 @@
     "Programming Languages"
   ],
   "activationEvents": [
-    "onCommand:unityToolbox.openDocumentation",
     "onLanguage:csharp"
   ],
   "main": "./out/extension",
   "contributes": {
-    "configuration": {
-      "properties": {
-        "unityToolbox.codeLensForUnityEventMethods": {
-          "type": "boolean",
-          "default": true,
-          "description": "Provide CodeLens for Unity event methods."
-        }
-      }
-    },
     "snippets": [
       {
         "language": "csharp",

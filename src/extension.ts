@@ -1,16 +1,8 @@
-import { ExtensionContext, languages } from 'vscode';
-import { CodeLens } from './features/codeLens';
-import { registerCommands } from './features/commands';
-import { initOutput } from './output';
+import { ExtensionContext, languages, window } from 'vscode';
+import { UnityMessageProvider } from './codeLens';
+
+export const debug = window.createOutputChannel("Unity Toolbox");
 
 export function activate(context: ExtensionContext) {
-    initOutput();
-    registerCommands(context);
-    registerCodeLens();
+    languages.registerCodeLensProvider({ language: "csharp" }, new UnityMessageProvider());
 }
-
-function registerCodeLens() {
-    languages.registerCodeLensProvider({ language: "csharp" }, new CodeLens());
-}
-
-export function deactivate() { }
