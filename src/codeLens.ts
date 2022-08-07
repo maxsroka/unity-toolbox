@@ -1,7 +1,7 @@
 import { CancellationToken, CodeLens, CodeLensProvider, Command, Range, ProviderResult, TextDocument } from 'vscode';
 import { debug } from './extension';
 
-export class UnityMessageProvider implements CodeLensProvider {
+export class UnityMessageCodeLensProvider implements CodeLensProvider {
     constructor() {
 
     }
