@@ -1,11 +1,6 @@
-import { CancellationToken, CodeLens, CodeLensProvider, Command, Range, ProviderResult, TextDocument } from 'vscode';
-import { debug } from './extension';
+import { CancellationToken, CodeLens, CodeLensProvider, Command, ProviderResult, TextDocument } from 'vscode';
 
 export class UnityMessageCodeLensProvider implements CodeLensProvider {
-    constructor() {
-
-    }
-
     provideCodeLenses(document: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
         console.time('codelense');
         const list = [];
