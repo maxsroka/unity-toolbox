@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Start",
+        "description": "desc",
+        "body": [
+            "void Start()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "Awake",
+        "description": "desc",
+        "body": [
+            "void Awake()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    }
+]

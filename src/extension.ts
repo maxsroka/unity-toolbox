@@ -1,8 +1,10 @@
-import { ExtensionContext, languages, window, workspace } from 'vscode';
+import { ExtensionContext, languages, window } from 'vscode';
 import { UnityMessageCodeLensProvider } from './codeLens';
+import { UnityMessageCompletionItemProvider } from './completion';
 
 export const debug = window.createOutputChannel("Unity Toolbox");
 
 export function activate(context: ExtensionContext) {
     languages.registerCodeLensProvider({ language: "csharp" }, new UnityMessageCodeLensProvider());
+    languages.registerCompletionItemProvider({ language: "csharp" }, new UnityMessageCompletionItemProvider());
 }
