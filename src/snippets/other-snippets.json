@@ -2,31 +2,24 @@
     "Log": {
         "prefix": [
             "log",
-            "deb"
+            "debuglog"
         ],
-        "description": "Log to console",
+        "description": "Logs a message.",
         "body": [
-            "Debug.Log(\"$0\");"
-        ]
-    },
-    "Print": {
-        "prefix": "pr",
-        "description": "Print to console",
-        "body": [
-            "print(\"$0\");"
+            "Debug.Log(${TM_SELECTED_TEXT:$0});"
         ]
     },
     "MonoBehaviour": {
         "prefix": [
-            "mono"
+            "monobehaviour"
         ],
-        "description": "MonoBehaviour class",
+        "description": "An empty MonoBehaviour.",
         "body": [
             "using UnityEngine;",
             "",
             "public class $TM_FILENAME_BASE : MonoBehaviour",
             "{",
-            "    $0",
+            "\t$0",
             "}"
         ]
     },
@@ -35,29 +28,29 @@
             "so",
             "scriptableobject"
         ],
-        "description": "ScriptableObject class",
+        "description": "An empty ScriptableObject.",
         "body": [
             "using UnityEngine;",
             "",
-            "[CreateAssetMenu(menuName = \"$WORKSPACE_NAME/$0\")]",
+            "[CreateAssetMenu(menuName = \"${2:WORKSPACE_NAME}/${1:$TM_FILENAME_BASE}\")]",
             "public class $TM_FILENAME_BASE : ScriptableObject",
             "{",
-            "",
+            "\t$0",
             "}"
         ]
     },
     "NetworkBehaviour": {
         "prefix": [
-            "net"
+            "networkbehaviour"
         ],
-        "description": "NetworkBehaviour class",
+        "description": "An empty NetworkBehaviour.",
         "body": [
-            "using MLAPI;",
             "using UnityEngine;",
+            "using ${1|Mirror,Unity.Netcode|};",
             "",
             "public class $TM_FILENAME_BASE : NetworkBehaviour",
             "{",
-            "    $0",
+            "\t$2",
             "}"
         ]
     }
