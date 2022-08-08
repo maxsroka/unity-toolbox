@@ -1,5 +1,6 @@
 import { CancellationToken, CodeLens, CodeLensProvider, Command, ProviderResult, TextDocument } from 'vscode';
 import { debug } from './extension';
+import { findBehaviour } from './parser';
 import * as messages from "./unity-messages.json";
 
 export class UnityMessageCodeLensProvider implements CodeLensProvider {
@@ -24,7 +25,6 @@ export class UnityMessageCodeLensProvider implements CodeLensProvider {
     }
 
     provideCodeLenses(document: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
-        console.time('codelens');
         const list = [];
         const text = document.getText();
 
@@ -46,7 +46,6 @@ export class UnityMessageCodeLensProvider implements CodeLensProvider {
             list.push(new CodeLens(line.range, cmd));
         }
 
-        console.timeEnd('codelens');
         return list;
     }
 }
