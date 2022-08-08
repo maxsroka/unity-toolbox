@@ -1,10 +1,8 @@
-import { CancellationToken, CodeLens, CodeLensProvider, Command, ProviderResult, TextDocument } from 'vscode';
-import { debug } from './extension';
-import { findBehaviour } from './parser';
+import { CancellationToken, CodeLens, CodeLensProvider, Command, Position, ProviderResult, TextDocument } from 'vscode';
+import { isInBehaviour } from './parser';
 import * as messages from "./unity-messages.json";
 
 export class UnityMessageCodeLensProvider implements CodeLensProvider {
-    hasBehaviourExp = new RegExp(/.*class.*: *(Mono|Network)Behaviour/);
     isVoidMethodExp = new RegExp(/void.*\(.*\)/);
     isUnityMessageExp: RegExp;
 
@@ -24,17 +22,17 @@ export class UnityMessageCodeLensProvider implements CodeLensProvider {
         this.isUnityMessageExp = new RegExp("void.*(" + methodsNames + ")\(.*\)");
     }
 
-    provideCodeLenses(document: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
+    provideCodeLenses(doc: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
         const list = [];
-        const text = document.getText();
-
-        if (!this.hasBehaviourExp.test(text)) return;
-
+        const text = doc.getText();
         const lines = text.split('\n');
 
         for (let i = 0; i < lines.length; i++) {
-            if (!lines[i].match(this.isVoidMethodExp)) continue;
-            if (!lines[i].match(this.isUnityMessageExp)) continue;
+            const line = lines[i];
+
+            if (!line.match(this.isVoidMethodExp)) continue;
+            if (!line.match(this.isUnityMessageExp)) continue;
+            if (!isInBehaviour(doc, new Position(i, 0))) continue;
 
             let cmd: Command = {
                 command: "",
@@ -42,8 +40,7 @@ export class UnityMessageCodeLensProvider implements CodeLensProvider {
                 tooltip: "This method is called by Unity"
             }
 
-            var line = document.lineAt(i);
-            list.push(new CodeLens(line.range, cmd));
+            list.push(new CodeLens(doc.lineAt(i).range, cmd));
         }
 
         return list;
