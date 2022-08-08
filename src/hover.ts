@@ -1,4 +1,4 @@
-import { CancellationToken, Hover, HoverProvider, Position, ProviderResult, TextDocument } from "vscode";
+import { CancellationToken, Hover, HoverProvider, Position, ProviderResult, TextDocument, Range } from "vscode";
 import { parser } from "./extension";
 import * as messages from "./unity-messages.json";
 
@@ -10,8 +10,16 @@ export default class UnityMessageHoverProvider implements HoverProvider {
         if (!parser.isInBehaviour(doc, pos)) return;
         if (!parser.isUnityMessage(line)) return;
 
-        return {
-            contents: ["Hover"]
+        const methodName = parser.findMethodName(line);
+        if (methodName === undefined) return;
+
+        const methodNameStartIndex = line.indexOf(methodName);
+        const range = doc.getWordRangeAtPosition(new Position(pos.line, methodNameStartIndex));
+
+        for (const msg of messages) {
+            if (msg.name === methodName) {
+                return new Hover(msg.description, range);
+            }
         }
     }
 }
