@@ -1,105 +1,111 @@
 import { TextDocument, Position } from "vscode";
 
-export function getExistingMethodsNames(doc: TextDocument): string[] {
-    const lines = doc.getText().split("\n");
-    const names = [];
+export default class Parser {
+    findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
 
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
+    constructor() {
 
-        if (!isInBehaviour(doc, new Position(i, 0))) continue;
-
-        const matches = line.match(/void *(.*)\(.*\)/);
-
-        if (matches != null) {
-            names.push(matches[1]);
-        }
     }
 
-    return names;
-}
+    getExistingMethodsNames(doc: TextDocument): string[] {
+        const lines = doc.getText().split("\n");
+        const names = [];
 
-export function isInBehaviour(doc: TextDocument, pos: Position): boolean {
-    const text = doc.getText();
-    const lines = text.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
 
-    const behaviourPos = findBehaviour(doc);
-    if (behaviourPos === undefined) return false;
-    const openingPos = findOpeningBracket(doc, behaviourPos);
-    if (openingPos === undefined) return false;
-    const closingPos = findClosingBracket(doc, openingPos);
-    if (closingPos === undefined) return false;
+            if (!this.isInBehaviour(doc, new Position(i, 0))) continue;
 
-    return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && isTopLevel(doc, openingPos, pos);
-}
+            const matches = line.match(/void *(.*)\(.*\)/);
 
-function isTopLevel(doc: TextDocument, openingPos: Position, pos: Position): boolean {
-    const lines = doc.getText().split("\n");
-
-    let count = 0;
-    for (let i = openingPos.line; i < lines.length; i++) {
-        const line = lines[i];
-
-        if (i === pos.line) {
-            return count === 1;
+            if (matches != null) {
+                names.push(matches[1]);
+            }
         }
 
-        if (line.includes("{")) {
-            count += 1;
-        } else if (line.includes("}")) {
-            count -= 1;
-        }
+        return names;
     }
 
-    return false;
-}
+    isInBehaviour(doc: TextDocument, pos: Position): boolean {
+        const text = doc.getText();
+        const lines = text.split("\n");
 
-function findClosingBracket(doc: TextDocument, openingPos: Position): Position | undefined {
-    const lines = doc.getText().split("\n");
+        const behaviourPos = this.findBehaviour(doc);
+        if (behaviourPos === undefined) return false;
+        const openingPos = this.findOpeningBracket(doc, behaviourPos);
+        if (openingPos === undefined) return false;
+        const closingPos = this.findClosingBracket(doc, openingPos);
+        if (closingPos === undefined) return false;
 
-    let count = 1;
-    for (let i = openingPos.line + 1; i < lines.length; i++) {
-        const line = lines[i];
+        return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && this.isTopLevel(doc, openingPos, pos);
+    }
 
-        if (line.includes("{")) {
-            count += 1;
-        } else {
-            const char = line.indexOf("}");
+    isTopLevel(doc: TextDocument, openingPos: Position, pos: Position): boolean {
+        const lines = doc.getText().split("\n");
 
-            if (char !== -1) {
+        let count = 0;
+        for (let i = openingPos.line; i < lines.length; i++) {
+            const line = lines[i];
+
+            if (i === pos.line) {
+                return count === 1;
+            }
+
+            if (line.includes("{")) {
+                count += 1;
+            } else if (line.includes("}")) {
                 count -= 1;
+            }
+        }
 
-                if (count === 0) {
-                    return new Position(i, char);
+        return false;
+    }
+
+    findClosingBracket(doc: TextDocument, openingPos: Position): Position | undefined {
+        const lines = doc.getText().split("\n");
+
+        let count = 1;
+        for (let i = openingPos.line + 1; i < lines.length; i++) {
+            const line = lines[i];
+
+            if (line.includes("{")) {
+                count += 1;
+            } else {
+                const char = line.indexOf("}");
+
+                if (char !== -1) {
+                    count -= 1;
+
+                    if (count === 0) {
+                        return new Position(i, char);
+                    }
                 }
             }
         }
     }
-}
 
-function findOpeningBracket(doc: TextDocument, behaviourPos: Position): Position | undefined {
-    const lines = doc.getText().split("\n");
+    findOpeningBracket(doc: TextDocument, behaviourPos: Position): Position | undefined {
+        const lines = doc.getText().split("\n");
 
-    for (let i = behaviourPos.line; i < lines.length; i++) {
-        const line = lines[i];
-        const char = line.search(/{/);
+        for (let i = behaviourPos.line; i < lines.length; i++) {
+            const line = lines[i];
+            const char = line.search(/{/);
 
-        if (char !== -1) {
-            return new Position(i, char);
+            if (char !== -1) {
+                return new Position(i, char);
+            }
         }
     }
-}
 
-const findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
+    findBehaviour(doc: TextDocument): Position | undefined {
+        const text = doc.getText();
+        const lines = text.split("\n");
 
-export function findBehaviour(doc: TextDocument): Position | undefined {
-    const text = doc.getText();
-    const lines = text.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            if (!this.findBehaviourExp.test(line)) continue;
 
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        if (!findBehaviourExp.test(line)) continue;
-
-        return new Position(i + 1, 0);
+            return new Position(i + 1, 0);
+        }
     }
 }

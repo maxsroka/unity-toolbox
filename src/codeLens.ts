@@ -1,8 +1,8 @@
 import { CancellationToken, CodeLens, CodeLensProvider, Command, Position, ProviderResult, TextDocument } from 'vscode';
-import { isInBehaviour } from './parser';
+import { parser } from './extension';
 import * as messages from "./unity-messages.json";
 
-export class UnityMessageCodeLensProvider implements CodeLensProvider {
+export default class UnityMessageCodeLensProvider implements CodeLensProvider {
     isVoidMethodExp = new RegExp(/void.*\(.*\)/);
     isUnityMessageExp: RegExp;
 
@@ -32,7 +32,7 @@ export class UnityMessageCodeLensProvider implements CodeLensProvider {
 
             if (!line.match(this.isVoidMethodExp)) continue;
             if (!line.match(this.isUnityMessageExp)) continue;
-            if (!isInBehaviour(doc, new Position(i, 0))) continue;
+            if (!parser.isInBehaviour(doc, new Position(i, 0))) continue;
 
             let cmd: Command = {
                 command: "",
