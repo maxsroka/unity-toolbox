@@ -1,4 +1,4 @@
-import { TextDocument, Position } from "vscode";
+import { TextDocument, Position, LinkedEditingRanges } from "vscode";
 import { debug } from "./extension";
 
 export function isInBehaviour(doc: TextDocument, pos: Position): boolean {
@@ -12,7 +12,28 @@ export function isInBehaviour(doc: TextDocument, pos: Position): boolean {
     const closingPos = findClosingBracket(doc, openingPos);
     if (closingPos === undefined) return false;
 
-    return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos);
+    return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && isTopLevel(doc, openingPos, pos);
+}
+
+function isTopLevel(doc: TextDocument, openingPos: Position, pos: Position): boolean {
+    const lines = doc.getText().split("\n");
+
+    let count = 0;
+    for (let i = openingPos.line; i < lines.length; i++) {
+        const line = lines[i];
+
+        if (i === pos.line) {
+            return count === 1;
+        }
+
+        if (line.includes("{")) {
+            count += 1;
+        } else if (line.includes("}")) {
+            count -= 1;
+        }
+    }
+
+    return false;
 }
 
 function findClosingBracket(doc: TextDocument, openingPos: Position): Position | undefined {
