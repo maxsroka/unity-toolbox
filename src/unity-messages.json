@@ -1,19 +1,599 @@
 [
     {
-        "name": "Start",
-        "description": "desc",
+        "name": "Awake",
+        "description": "Awake is called when the script instance is being loaded.",
         "body": [
-            "void Start()",
+            "void Awake()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "Awake",
-        "description": "desc",
+        "name": "FixedUpdate",
+        "description": "Frame-rate independent MonoBehaviour.FixedUpdate message for physics calculations.",
         "body": [
-            "void Awake()",
+            "void FixedUpdate()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "LateUpdate",
+        "description": "LateUpdate is called every frame, if the Behaviour is enabled.",
+        "body": [
+            "void LateUpdate()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnAnimatorIK",
+        "description": "Callback for setting up animation IK (inverse kinematics).",
+        "body": [
+            "void OnAnimatorIK(int layerIndex)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnAnimatorMove",
+        "description": "Callback for processing animation movements for modifying root motion.",
+        "body": [
+            "void OnAnimatorMove()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnApplicationFocus",
+        "description": "Sent to all GameObjects when the player gets or loses focus.",
+        "body": [
+            "void OnApplicationFocus(bool hasFocus)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnApplicationPause",
+        "description": "Sent to all GameObjects when the application pauses.",
+        "body": [
+            "void OnApplicationPause(bool pauseStatus)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnApplicationQuit",
+        "description": "Sent to all GameObjects before the application quits",
+        "body": [
+            "void OnApplicationQuit()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnAudioFilterRead",
+        "description": "If OnAudioFilterRead is implemented, Unity will insert a custom filter into the audio DSP chain.",
+        "body": [
+            "void OnAudioFilterRead(float[] data, int channels)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnBecameInvisible",
+        "description": "OnBecameInvisible is called when the renderer is no longer visible by any camera.",
+        "body": [
+            "void OnBecameInvisible()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnBecameVisible",
+        "description": "OnBecameVisible is called when the renderer became visible by any camera.",
+        "body": [
+            "void OnBecameVisible()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnCollisionEnter",
+        "description": "OnCollisionEnter is called when this collider/rigidbody has begun touching another rigidbody/collider.",
+        "body": [
+            "void OnCollisionEnter(Collision other)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnCollisionEnter2D",
+        "description": "Sent when an incoming collider makes contact with this object's collider (2D physics only).",
+        "body": [
+            "void OnCollisionEnter2D(Collision2D other)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnCollisionExit",
+        "description": "OnCollisionExit is called when this collider/rigidbody has stopped touching another rigidbody/collider.",
+        "body": [
+            "void OnCollisionExit(Collision other)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnCollisionExit2D",
+        "description": "Sent when a collider on another object stops touching this object's collider (2D physics only).",
+        "body": [
+            "void OnCollisionExit2D(Collision2D other)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnCollisionStay",
+        "description": "OnCollisionStay is called once per frame for every Collider or Rigidbody that touches another Collider or Rigidbody.",
+        "body": [
+            "void OnCollisionStay(Collision other)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnCollisionStay2D",
+        "description": "Sent each frame where a collider on another object is touching this object's collider (2D physics only).",
+        "body": [
+            "void OnCollisionStay2D(Collision2D other)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnControllerColliderHit",
+        "description": "OnControllerColliderHit is called when the controller hits a collider while performing a Move.",
+        "body": [
+            "void OnControllerColliderHit(ControllerColliderHit hit)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnDestroy",
+        "description": "Destroying the attached Behaviour will result in the game or Scene receiving OnDestroy.",
+        "body": [
+            "void OnDestroy()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnDisable",
+        "description": "This function is called when the behaviour becomes disabled.",
+        "body": [
+            "void OnDisable()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnDrawGizmos",
+        "description": "Implement OnDrawGizmos if you want to draw gizmos that are also pickable and always drawn.",
+        "body": [
+            "void OnDrawGizmos()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnDrawGizmosSelected",
+        "description": "Implement OnDrawGizmosSelected to draw a gizmo if the object is selected.",
+        "body": [
+            "void OnDrawGizmosSelected()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnEnable",
+        "description": "This function is called when the object becomes enabled and active.",
+        "body": [
+            "void OnEnable()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnGUI",
+        "description": "OnGUI is called for rendering and handling GUI events.",
+        "body": [
+            "void OnGUI()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnJointBreak",
+        "description": "Called when a joint attached to the same game object broke.",
+        "body": [
+            "void OnJointBreak(float breakForce)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnJointBreak2D",
+        "description": "Called when a Joint2D attached to the same game object breaks.",
+        "body": [
+            "void OnJointBreak2D(Joint2D brokenJoint)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnMouseDown",
+        "description": "OnMouseDown is called when the user has pressed the mouse button while over the Collider.",
+        "body": [
+            "void OnMouseDown()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnMouseDrag",
+        "description": "OnMouseDrag is called when the user has clicked on a Collider and is still holding down the mouse.",
+        "body": [
+            "void OnMouseDrag()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnMouseEnter",
+        "description": "Called when the mouse enters the Collider.",
+        "body": [
+            "void OnMouseEnter()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnMouseExit",
+        "description": "Called when the mouse is not any longer over the Collider.",
+        "body": [
+            "void OnMouseExit()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnMouseOver",
+        "description": "Called every frame while the mouse is over the Collider.",
+        "body": [
+            "void OnMouseOver()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnMouseUp",
+        "description": "OnMouseUp is called when the user has released the mouse button.",
+        "body": [
+            "void OnMouseUp()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnMouseUpAsButton",
+        "description": "OnMouseUpAsButton is only called when the mouse is released over the same Collider as it was pressed.",
+        "body": [
+            "void OnMouseUpAsButton()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnParticleCollision",
+        "description": "OnParticleCollision is called when a particle hits a Collider.",
+        "body": [
+            "void OnParticleCollision(GameObject other)",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "OnParticleSystemStopped",
+        "description": "OnParticleSystemStopped is called when all particles in the system have died, and no new particles will be born. New particles cease to be created either after Stop is called, or when the duration property of a non-looping system has been exceeded.",
+        "body": [
+            "void OnParticleSystemStopped()",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "",
+        "description": "",
+        "body": [
+            "void ",
             "{",
             "\t$0",
             "}"

@@ -1,4 +1,4 @@
-import { CancellationToken, CompletionItemKind, SnippetString, CompletionContext, CompletionItem, CompletionItemProvider, CompletionList, Position, ProviderResult, TextDocument } from "vscode";
+import { CancellationToken, CompletionItemKind, SnippetString, CompletionContext, CompletionItem, CompletionItemProvider, CompletionList, Position, ProviderResult, TextDocument, CompletionItemTag } from "vscode";
 import { isInBehaviour } from "./parser";
 import * as messages from "./unity-messages.json";
 
@@ -11,6 +11,8 @@ export class UnityMessageSnippetsProvider implements CompletionItemProvider {
         for (const msg of messages) {
             const item = new CompletionItem(msg.name);
             item.kind = CompletionItemKind.Method;
+            item.detail = `${msg.name} (Unity Message)`;
+            item.documentation = msg.description;
             item.insertText = new SnippetString(msg.body.join("\n"));
 
             items.push(item);
