@@ -1,23 +1,40 @@
 {
     "Log": {
         "prefix": [
-            "log",
-            "debuglog"
+            "Log"
         ],
         "description": "Logs a message.",
         "body": [
             "Debug.Log(${TM_SELECTED_TEXT:$0});"
         ]
     },
+    "LogWarning": {
+        "prefix": [
+            "LogWarning"
+        ],
+        "description": "Logs a warning message.",
+        "body": [
+            "Debug.LogWarning(${TM_SELECTED_TEXT:$0});"
+        ]
+    },
+    "LogError": {
+        "prefix": [
+            "LogError"
+        ],
+        "description": "Logs an error message.",
+        "body": [
+            "Debug.LogError(${TM_SELECTED_TEXT:$0});"
+        ]
+    },
     "MonoBehaviour": {
         "prefix": [
-            "monobehaviour"
+            "MonoBehaviour"
         ],
         "description": "An empty MonoBehaviour.",
         "body": [
             "using UnityEngine;",
             "",
-            "public class $TM_FILENAME_BASE : MonoBehaviour",
+            "public class ${TM_FILENAME_BASE:Example} : MonoBehaviour",
             "{",
             "\t$0",
             "}"
@@ -26,14 +43,14 @@
     "ScriptableObject": {
         "prefix": [
             "so",
-            "scriptableobject"
+            "ScriptableObject"
         ],
         "description": "An empty ScriptableObject.",
         "body": [
             "using UnityEngine;",
             "",
             "[CreateAssetMenu(menuName = \"${2:WORKSPACE_NAME}/${1:$TM_FILENAME_BASE}\")]",
-            "public class $TM_FILENAME_BASE : ScriptableObject",
+            "public class ${TM_FILENAME_BASE:Example} : ScriptableObject",
             "{",
             "\t$0",
             "}"
@@ -41,14 +58,14 @@
     },
     "NetworkBehaviour": {
         "prefix": [
-            "networkbehaviour"
+            "NetworkBehaviour"
         ],
         "description": "An empty NetworkBehaviour.",
         "body": [
             "using UnityEngine;",
             "using ${1|Mirror,Unity.Netcode|};",
             "",
-            "public class $TM_FILENAME_BASE : NetworkBehaviour",
+            "public class ${TM_FILENAME_BASE:Example} : NetworkBehaviour",
             "{",
             "\t$2",
             "}"
