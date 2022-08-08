@@ -1,5 +1,23 @@
-import { TextDocument, Position, LinkedEditingRanges } from "vscode";
-import { debug } from "./extension";
+import { TextDocument, Position } from "vscode";
+
+export function getExistingMethodsNames(doc: TextDocument): string[] {
+    const lines = doc.getText().split("\n");
+    const names = [];
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+
+        if (!isInBehaviour(doc, new Position(i, 0))) continue;
+
+        const matches = line.match(/void *(.*)\(.*\)/);
+
+        if (matches != null) {
+            names.push(matches[1]);
+        }
+    }
+
+    return names;
+}
 
 export function isInBehaviour(doc: TextDocument, pos: Position): boolean {
     const text = doc.getText();

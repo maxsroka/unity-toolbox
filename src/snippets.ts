@@ -1,5 +1,5 @@
 import { CancellationToken, CompletionItemKind, SnippetString, CompletionContext, CompletionItem, CompletionItemProvider, CompletionList, Position, ProviderResult, TextDocument, CompletionItemTag } from "vscode";
-import { isInBehaviour } from "./parser";
+import { getExistingMethodsNames, isInBehaviour } from "./parser";
 import * as messages from "./unity-messages.json";
 
 export class UnityMessageSnippetsProvider implements CompletionItemProvider {
@@ -7,8 +7,11 @@ export class UnityMessageSnippetsProvider implements CompletionItemProvider {
         if (!isInBehaviour(doc, pos)) return;
 
         const items = [];
+        const existingMethods = getExistingMethodsNames(doc);
 
         for (const msg of messages) {
+            if (existingMethods.includes(msg.name)) continue;
+
             const item = new CompletionItem(msg.name);
             item.kind = CompletionItemKind.Method;
             item.detail = `${msg.name} (Unity Message)`;
