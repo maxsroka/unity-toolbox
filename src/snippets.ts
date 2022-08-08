@@ -1,10 +1,21 @@
-import { CancellationToken, CompletionContext, CompletionItem, CompletionItemProvider, CompletionList, Position, ProviderResult, TextDocument } from "vscode";
+import { CancellationToken, CompletionItemKind, SnippetString, CompletionContext, CompletionItem, CompletionItemProvider, CompletionList, Position, ProviderResult, TextDocument } from "vscode";
 import { isInBehaviour } from "./parser";
+import * as messages from "./unity-messages.json";
 
 export class UnityMessageSnippetsProvider implements CompletionItemProvider {
     provideCompletionItems(doc: TextDocument, pos: Position, token: CancellationToken, ctx: CompletionContext): ProviderResult<CompletionItem[] | CompletionList<CompletionItem>> {
-        console.log(isInBehaviour(doc, pos));
+        if (!isInBehaviour(doc, pos)) return;
 
-        throw new Error("Method not implemented.");
+        const items = [];
+
+        for (const msg of messages) {
+            const item = new CompletionItem(msg.name);
+            item.kind = CompletionItemKind.Method;
+            item.insertText = new SnippetString(msg.body.join("\n"));
+
+            items.push(item);
+        }
+
+        return items;
     }
 }
