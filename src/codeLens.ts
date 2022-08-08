@@ -1,27 +1,7 @@
 import { CancellationToken, CodeLens, CodeLensProvider, Command, Position, ProviderResult, TextDocument } from 'vscode';
 import { parser } from './extension';
-import * as messages from "./unity-messages.json";
 
 export default class UnityMessageCodeLensProvider implements CodeLensProvider {
-    isVoidMethodExp = new RegExp(/void.*\(.*\)/);
-    isUnityMessageExp: RegExp;
-
-    constructor() {
-        let methodsNames = "";
-
-        for (let i = 0; i < messages.length; i++) {
-            const msg = messages[i];
-
-            methodsNames += msg.name;
-
-            if (i < messages.length - 1) {
-                methodsNames += "|";
-            }
-        }
-
-        this.isUnityMessageExp = new RegExp("void.*(" + methodsNames + ")\(.*\)");
-    }
-
     provideCodeLenses(doc: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
         const list = [];
         const text = doc.getText();
@@ -30,8 +10,8 @@ export default class UnityMessageCodeLensProvider implements CodeLensProvider {
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
 
-            if (!line.match(this.isVoidMethodExp)) continue;
-            if (!line.match(this.isUnityMessageExp)) continue;
+            if (!parser.isVoidMethod(line)) continue;
+            if (!parser.isUnityMessage(line)) continue;
             if (!parser.isInBehaviour(doc, new Position(i, 0))) continue;
 
             let cmd: Command = {

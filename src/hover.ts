@@ -8,6 +8,7 @@ export default class UnityMessageHoverProvider implements HoverProvider {
         const line = lines[pos.line];
 
         if (!parser.isInBehaviour(doc, pos)) return;
+        if (!parser.isUnityMessage(line)) return;
 
         return {
             contents: ["Hover"]

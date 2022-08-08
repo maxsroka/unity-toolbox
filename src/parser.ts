@@ -1,11 +1,42 @@
 import { TextDocument, Position } from "vscode";
+import * as messages from "./unity-messages.json";
 
 export default class Parser {
     private findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
     private findMethodNameExp = new RegExp(/void *(.*)\(.*\)/);
+    private isUnityMessageExp: RegExp;
+    private isVoidMethodExp = new RegExp(/void.*\(.*\)/);
 
     constructor() {
+        let methodsNames = "";
 
+        for (let i = 0; i < messages.length; i++) {
+            const msg = messages[i];
+
+            methodsNames += msg.name;
+
+            if (i < messages.length - 1) {
+                methodsNames += "|";
+            }
+        }
+
+        this.isUnityMessageExp = new RegExp("void.*(" + methodsNames + ")\(.*\)");
+    }
+
+    isVoidMethod(line: string): boolean {
+        return this.isVoidMethodExp.test(line);
+    }
+
+    isUnityMessage(line: string): boolean {
+        return this.isUnityMessageExp.test(line);
+    }
+
+    findMethodName(line: string): string | undefined {
+        const matches = line.match(this.findMethodNameExp);
+
+        if (matches !== null) {
+            return matches[1];
+        }
     }
 
     getExistingMethodsNames(doc: TextDocument): string[] {
@@ -17,10 +48,10 @@ export default class Parser {
 
             if (!this.isInBehaviour(doc, new Position(i, 0))) continue;
 
-            const matches = line.match(this.findMethodNameExp);
+            const methodName = this.findMethodName(line);
 
-            if (matches != null) {
-                names.push(matches[1]);
+            if (methodName !== undefined) {
+                names.push(methodName);
             }
         }
 
