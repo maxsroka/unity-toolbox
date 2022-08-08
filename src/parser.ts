@@ -1,7 +1,8 @@
 import { TextDocument, Position } from "vscode";
 
 export default class Parser {
-    findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
+    private findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
+    private findMethodNameExp = new RegExp(/void *(.*)\(.*\)/);
 
     constructor() {
 
@@ -16,7 +17,7 @@ export default class Parser {
 
             if (!this.isInBehaviour(doc, new Position(i, 0))) continue;
 
-            const matches = line.match(/void *(.*)\(.*\)/);
+            const matches = line.match(this.findMethodNameExp);
 
             if (matches != null) {
                 names.push(matches[1]);
