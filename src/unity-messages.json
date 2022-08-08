@@ -350,250 +350,200 @@
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnParticleTrigger",
+        "description": "OnParticleTrigger is called when any particles in a Particle System meet the conditions in the trigger module.",
         "body": [
-            "void ",
+            "void OnParticleTrigger()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnParticleUpdateJobScheduled",
+        "description": "OnParticleUpdateJobScheduled is called when a Particle System's built-in update job has been scheduled.",
         "body": [
-            "void ",
+            "void OnParticleUpdateJobScheduled()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnPostRender",
+        "description": "Event function that Unity calls after a Camera renders the scene.",
         "body": [
-            "void ",
+            "void OnPostRender()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnPreCull",
+        "description": "Event function that Unity calls before a Camera culls the scene.",
         "body": [
-            "void ",
+            "void OnPreCull()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnPreRender",
+        "description": "Event function that Unity calls before a Camera renders the scene.",
         "body": [
-            "void ",
+            "void OnPreRender()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnRenderImage",
+        "description": "Event function that Unity calls after a Camera has finished rendering, that allows you to modify the Camera's final image.",
         "body": [
-            "void ",
+            "void OnRenderImage(RenderTexture src, RenderTexture dest)",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnRenderObject",
+        "description": "OnRenderObject is called after camera has rendered the Scene.",
         "body": [
-            "void ",
+            "void OnRenderObject()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnTransformChildrenChanged",
+        "description": "This function is called when the list of children of the transform of the GameObject has changed.",
         "body": [
-            "void ",
+            "void OnTransformChildrenChanged()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnTransformParentChanged",
+        "description": "This function is called when a direct or indirect parent of the transform of the GameObject has changed.",
         "body": [
-            "void ",
+            "void OnTransformParentChanged()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnTriggerEnter",
+        "description": "When a GameObject collides with another GameObject, Unity calls OnTriggerEnter.",
         "body": [
-            "void ",
+            "void OnTriggerEnter(Collider other)",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnTriggerEnter2D",
+        "description": "Sent when another object enters a trigger collider attached to this object (2D physics only).",
         "body": [
-            "void ",
+            "void OnTriggerEnter2D(Collider2D other)",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnTriggerExit",
+        "description": "OnTriggerExit is called when the Collider other has stopped touching the trigger.",
         "body": [
-            "void ",
+            "void OnTriggerExit(Collider other)",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnTriggerExit2D",
+        "description": "Sent when another object leaves a trigger collider attached to this object (2D physics only).",
         "body": [
-            "void ",
+            "void OnTriggerExit2D(Collider2D other)",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnTriggerStay",
+        "description": "OnTriggerStay is called once per physics update for every Collider other that is touching the trigger.",
         "body": [
-            "void ",
+            "void OnTriggerStay(Collider other)",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnTriggerStay2D",
+        "description": "Sent each frame where another object is within a trigger collider attached to this object (2D physics only).",
         "body": [
-            "void ",
+            "void OnTriggerStay2D(Collider2D other)",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnValidate",
+        "description": "Editor-only function that Unity calls when the script is loaded or a value changes in the Inspector.",
         "body": [
-            "void ",
+            "void OnValidate()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "OnWillRenderObject",
+        "description": "OnWillRenderObject is called for each camera if the object is visible and not a UI element.",
         "body": [
-            "void ",
+            "void OnWillRenderObject()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "Reset",
+        "description": "Reset to default values.",
         "body": [
-            "void ",
+            "void Reset()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "Start",
+        "description": "Start is called on the frame when a script is enabled just before any of the Update methods are called the first time.",
         "body": [
-            "void ",
+            "void Start()",
             "{",
             "\t$0",
             "}"
         ]
     },
     {
-        "name": "",
-        "description": "",
+        "name": "Update",
+        "description": "Update is called every frame, if the MonoBehaviour is enabled.",
         "body": [
-            "void ",
-            "{",
-            "\t$0",
-            "}"
-        ]
-    },
-    {
-        "name": "",
-        "description": "",
-        "body": [
-            "void ",
-            "{",
-            "\t$0",
-            "}"
-        ]
-    },
-    {
-        "name": "",
-        "description": "",
-        "body": [
-            "void ",
-            "{",
-            "\t$0",
-            "}"
-        ]
-    },
-    {
-        "name": "",
-        "description": "",
-        "body": [
-            "void ",
-            "{",
-            "\t$0",
-            "}"
-        ]
-    },
-    {
-        "name": "",
-        "description": "",
-        "body": [
-            "void ",
-            "{",
-            "\t$0",
-            "}"
-        ]
-    },
-    {
-        "name": "",
-        "description": "",
-        "body": [
-            "void ",
+            "void Update()",
             "{",
             "\t$0",
             "}"
