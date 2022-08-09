@@ -85,7 +85,9 @@ export default class Parser {
 
             if (line.includes("{")) {
                 count += 1;
-            } else if (line.includes("}")) {
+            }
+
+            if (line.includes("}")) {
                 count -= 1;
             }
         }
@@ -102,15 +104,14 @@ export default class Parser {
 
             if (line.includes("{")) {
                 count += 1;
-            } else {
-                const char = line.indexOf("}");
+            }
 
-                if (char !== -1) {
-                    count -= 1;
+            const char = line.indexOf("}");
+            if (char !== -1) {
+                count -= 1;
 
-                    if (count === 0) {
-                        return new Position(i, char);
-                    }
+                if (count === 0) {
+                    return new Position(i, char);
                 }
             }
         }
