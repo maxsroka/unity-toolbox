@@ -10,7 +10,6 @@ export default class UnityMessageCodeLensProvider implements CodeLensProvider {
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
 
-            if (!parser.isVoidMethod(line)) continue;
             if (!parser.isUnityMessage(line)) continue;
             if (!parser.isInBehaviour(doc, new Position(i, 0))) continue;
 

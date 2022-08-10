@@ -5,7 +5,6 @@ export default class Parser {
     private findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
     private findMethodNameExp = new RegExp(/void *(.*?) *\(.*?\)/);
     private isUnityMessageExp: RegExp;
-    private isVoidMethodExp = new RegExp(/void.*\(.*\)/);
 
     constructor() {
         let methodsNames = "";
@@ -21,10 +20,6 @@ export default class Parser {
         }
 
         this.isUnityMessageExp = new RegExp("void.*(" + methodsNames + ")\(.*\)");
-    }
-
-    isVoidMethod(line: string): boolean {
-        return this.isVoidMethodExp.test(line);
     }
 
     isUnityMessage(line: string): boolean {
