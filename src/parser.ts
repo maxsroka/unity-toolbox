@@ -19,10 +19,14 @@ export default class Parser {
             }
         }
 
-        this.isUnityMessageExp = new RegExp("void.*(" + methodsNames + ")\(.*\)");
+        this.isUnityMessageExp = new RegExp("void.*(" + methodsNames + ")\\(.*\\)");
+        // ^ needs double escape (\\) because a single one would get lost when adding strings
     }
 
-    isUnityMessage(line: string): boolean {
+    /**
+     * Checks if there is a Unity message in the line.
+     */
+    hasUnityMessage(line: string): boolean {
         return this.isUnityMessageExp.test(line);
     }
 

@@ -82,5 +82,43 @@ suite("parser", () => {
 
             assert.equal(name, "Test");
         });
+
+        test("spaces before name", () => {
+            const name = parser.findMethodsName("void   Test()");
+
+            assert.equal(name, "Test");
+        });
+
+        test("tab", () => {
+            const name = parser.findMethodsName("   void Test()");
+
+            assert.equal(name, "Test");
+        });
+    });
+
+    suite("hasUnityMessage", () => {
+        test("basic", () => {
+            const has = parser.hasUnityMessage("void Start()");
+
+            assert.equal(has, true);
+        });
+
+        test("no brackets", () => {
+            const has = parser.hasUnityMessage("void Start");
+
+            assert.equal(has, false);
+        });
+
+        test("no return type", () => {
+            const has = parser.hasUnityMessage("Start()");
+
+            assert.equal(has, false);
+        });
+
+        test("parameters", () => {
+            const has = parser.hasUnityMessage("void OnCollisionEnter(Collision other)");
+
+            assert.equal(has, true);
+        });
     });
 });
