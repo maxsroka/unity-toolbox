@@ -31,6 +31,9 @@ export default class Parser {
         return this.isUnityMessageExp.test(line);
     }
 
+    /**
+     * Finds the name of a method. It must have the return type of `void`.
+     */
     findMethodName(line: string): string | undefined {
         const matches = line.match(this.findMethodNameExp);
 
