@@ -4,7 +4,7 @@ import Parser from "../parser";
 const parser = new Parser();
 
 suite("parser", () => {
-    suite("findMethodName", () => {
+    suite("findMethodsName", () => {
         test("no curly brackets", () => {
             const name = parser.findMethodsName("void Test()");
 
