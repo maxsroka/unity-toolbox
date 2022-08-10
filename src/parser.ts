@@ -3,7 +3,7 @@ import * as messages from "./unity-messages.json";
 
 export default class Parser {
     private findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
-    private findMethodNameExp = new RegExp(/void *(.*)\(.*\)/);
+    private findMethodNameExp = new RegExp(/void *(.*?) *\(.*?\)/);
     private isUnityMessageExp: RegExp;
     private isVoidMethodExp = new RegExp(/void.*\(.*\)/);
 
