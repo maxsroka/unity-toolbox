@@ -10,7 +10,7 @@ export default class UnityMessageHoverProvider implements HoverProvider {
         if (!parser.isInBehaviour(doc, pos)) return;
         if (!parser.isUnityMessage(line)) return;
 
-        const methodName = parser.findMethodName(line);
+        const methodName = parser.findMethodsName(line);
         if (methodName === undefined) return;
 
         const methodNameStartIndex = line.indexOf(methodName);
