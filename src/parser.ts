@@ -34,7 +34,7 @@ export default class Parser {
     /**
      * Finds the name of a method. It must have the return type of `void`.
      */
-    findMethodName(line: string): string | undefined {
+    findMethodsName(line: string): string | undefined {
         const matches = line.match(this.findMethodNameExp);
 
         if (matches !== null) {
@@ -51,7 +51,7 @@ export default class Parser {
 
             if (!this.isInBehaviour(doc, new Position(i, 0))) continue;
 
-            const methodName = this.findMethodName(line);
+            const methodName = this.findMethodsName(line);
 
             if (methodName !== undefined) {
                 names.push(methodName);
