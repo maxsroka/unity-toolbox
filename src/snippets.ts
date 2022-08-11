@@ -5,7 +5,7 @@ import * as messages from "./unity-messages.json";
 export default class UnityMessageSnippetsProvider implements CompletionItemProvider {
     provideCompletionItems(doc: TextDocument, pos: Position, token: CancellationToken, ctx: CompletionContext): ProviderResult<CompletionItem[] | CompletionList<CompletionItem>> {
         const lines = doc.getText().split("\n");
-        if (!parser.isInBehaviour(lines, pos)) return;
+        if (!parser.isInBehaviour(lines, pos.line)) return;
 
         const items = [];
         const existingMethods = parser.findAllMethodsNames(lines);

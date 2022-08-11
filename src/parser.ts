@@ -44,42 +44,41 @@ export default class Parser {
     /**
      * Finds the position of the first `MonoBehaviour` or `NetworkBehaviour` definition. The returned character is always zero.
      */
-    findBehaviour(lines: string[]): Position | undefined {
+    findBehaviour(lines: string[]): number | undefined {
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
-            if (!this.findBehaviourExp.test(line)) continue;
 
-            return new Position(i, 0);
+            if (this.findBehaviourExp.test(line)) {
+                return i;
+            }
         }
     }
 
-    findClosingBracket(lines: string[], openingBracket: Position): Position | undefined {
+    findClosingBracket(lines: string[], openingBracketLine: number): number | undefined {
         let count = 0;
-        for (let i = openingBracket.line; i < lines.length; i++) {
+        for (let i = openingBracketLine; i < lines.length; i++) {
             const line = lines[i];
 
             if (line.includes("{")) {
                 count += 1;
             }
 
-            const charIndex = line.indexOf("}");
-            if (charIndex !== -1) {
+            if (line.includes("}")) {
                 count -= 1;
 
                 if (count === 0) {
-                    return new Position(i, charIndex);
+                    return i;
                 }
             }
         }
     }
 
-    findOpeningBracket(lines: string[], startPos: Position): Position | undefined {
-        for (let i = startPos.line; i < lines.length; i++) {
+    findOpeningBracket(lines: string[], startLine: number): number | undefined {
+        for (let i = startLine; i < lines.length; i++) {
             const line = lines[i];
-            const charIndex = line.indexOf("{");
 
-            if (charIndex !== -1) {
-                return new Position(i, charIndex);
+            if (line.includes("{")) {
+                return i;
             }
         }
     }
@@ -122,14 +121,14 @@ export default class Parser {
         return false;
     }
 
-    isInBehaviour(lines: string[], pos: Position): boolean {
-        const behaviourPos = this.findBehaviour(lines);
-        if (behaviourPos === undefined) return false;
-        const openingPos = this.findOpeningBracket(lines, behaviourPos);
-        if (openingPos === undefined) return false;
-        const closingPos = this.findClosingBracket(lines, openingPos);
-        if (closingPos === undefined) return false;
+    isInBehaviour(lines: string[], line: number): boolean {
+        const behaviourLine = this.findBehaviour(lines);
+        if (behaviourLine === undefined) return false;
+        const openingLine = this.findOpeningBracket(lines, behaviourLine);
+        if (openingLine === undefined) return false;
+        const closingLine = this.findClosingBracket(lines, openingLine);
+        if (closingLine === undefined) return false;
 
-        return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && this.isLineTopLevel(lines, openingPos.line, pos.line);
+        return line > openingLine && line < closingLine && this.isLineTopLevel(lines, openingLine, line);
     }
 }
