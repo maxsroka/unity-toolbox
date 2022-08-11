@@ -3,9 +3,8 @@ import { parser } from './extension';
 
 export default class UnityMessageCodeLensProvider implements CodeLensProvider {
     provideCodeLenses(doc: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
+        const lines = doc.getText().split('\n');
         const list = [];
-        const text = doc.getText();
-        const lines = text.split('\n');
 
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
