@@ -516,4 +516,58 @@ suite("parser", () => {
             assert.equal(is, false);
         });
     });
+
+    suite("isInBehaviour", () => {
+        test("1", () => {
+            const is = parser.isInBehaviour([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ], new Position(4, 0));
+
+            assert.equal(is, true);
+        });
+
+        test("2", () => {
+            const is = parser.isInBehaviour([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ], new Position(1, 0));
+
+            assert.equal(is, false);
+        });
+
+        test("3", () => {
+            const is = parser.isInBehaviour([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ], new Position(5, 0));
+
+            assert.equal(is, false);
+        });
+
+        test("4", () => {
+            const is = parser.isInBehaviour([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ], new Position(3, 0));
+
+            assert.equal(is, false);
+        });
+    });
 });
