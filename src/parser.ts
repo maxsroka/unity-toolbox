@@ -41,6 +41,18 @@ export default class Parser {
         }
     }
 
+    /**
+     * Finds the position of the first `MonoBehaviour` or `NetworkBehaviour` definition. The returned character is always zero.
+     */
+    findBehaviour(lines: string[]): Position | undefined {
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            if (!this.findBehaviourExp.test(line)) continue;
+
+            return new Position(i + 1, 0);
+        }
+    }
+
     getExistingMethodsNames(doc: TextDocument): string[] {
         const lines = doc.getText().split("\n");
         const names = [];
@@ -64,7 +76,7 @@ export default class Parser {
         const text = doc.getText();
         const lines = text.split("\n");
 
-        const behaviourPos = this.findBehaviour(doc);
+        const behaviourPos = this.findBehaviour(lines);
         if (behaviourPos === undefined) return false;
         const openingPos = this.findOpeningBracket(doc, behaviourPos);
         if (openingPos === undefined) return false;
@@ -129,18 +141,6 @@ export default class Parser {
             if (char !== -1) {
                 return new Position(i, char);
             }
-        }
-    }
-
-    findBehaviour(doc: TextDocument): Position | undefined {
-        const text = doc.getText();
-        const lines = text.split("\n");
-
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i];
-            if (!this.findBehaviourExp.test(line)) continue;
-
-            return new Position(i + 1, 0);
         }
     }
 }

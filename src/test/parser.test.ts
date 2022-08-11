@@ -151,4 +151,174 @@ suite("parser", () => {
             assert.equal(has, false);
         });
     });
+
+    suite("findBehaviour", () => {
+        test("basic MonoBehaviour", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("basic NetworkBehaviour", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "public class Test : NetworkBehaviour",
+                "{",
+                "",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("multiple", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "",
+                "}",
+                "",
+                "public class SecondOne : MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("private", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "private class Test : MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("private no keyword", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "class Test : MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("no spaces", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "public class Test:MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("more spaces", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "public  class  Test  :  MonoBehaviour",
+                "{",
+                "",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("parent", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "   class Nested : MonoBehaviour { }",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("nested", () => {
+            const pos = parser.findBehaviour([
+                "using UnityEngine",
+                "",
+                "public class Parent",
+                "{",
+                "   class Test : MonoBehaviour { }",
+                "}",
+            ]);
+
+            assert.equal(pos?.line, 5);
+            assert.equal(pos?.character, 0);
+        });
+
+        suite("curly brackets", () => {
+            test("1", () => {
+                const pos = parser.findBehaviour([
+                    "using UnityEngine",
+                    "",
+                    "public class Test : MonoBehaviour {",
+                    "",
+                    "}",
+                ]);
+
+                assert.equal(pos?.line, 3);
+                assert.equal(pos?.character, 0);
+            });
+
+            test("2", () => {
+                const pos = parser.findBehaviour([
+                    "using UnityEngine",
+                    "",
+                    "public class Test : MonoBehaviour { }",
+                ]);
+
+                assert.equal(pos?.line, 3);
+                assert.equal(pos?.character, 0);
+            });
+
+            test("3", () => {
+                const pos = parser.findBehaviour([
+                    "using UnityEngine",
+                    "",
+                    "public class Test : MonoBehaviour{}",
+                ]);
+
+                assert.equal(pos?.line, 3);
+                assert.equal(pos?.character, 0);
+            });
+        });
+    });
 });
