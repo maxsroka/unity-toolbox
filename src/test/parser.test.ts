@@ -359,4 +359,41 @@ suite("parser", () => {
             assert.equal(pos?.character, 0);
         });
     });
+
+    suite("findOpeningBracket", () => {
+        test("basic", () => {
+            const pos = parser.findOpeningBracket([
+                "void Test()",
+                "{",
+                "",
+                "}",
+            ], new Position(0, 0));
+
+            assert.equal(pos?.line, 1);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("same line", () => {
+            const pos = parser.findOpeningBracket([
+                "void Test(){}",
+            ], new Position(0, 0));
+
+            assert.equal(pos?.line, 0);
+            assert.equal(pos?.character, 11);
+        });
+
+        test("nested", () => {
+            const pos = parser.findOpeningBracket([
+                "void Test()",
+                "{",
+                "   {",
+                "       void Nested() { }",
+                "   }",
+                "}",
+            ], new Position(0, 0));
+
+            assert.equal(pos?.line, 1);
+            assert.equal(pos?.character, 0);
+        });
+    });
 });

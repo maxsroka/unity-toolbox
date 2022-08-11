@@ -73,6 +73,17 @@ export default class Parser {
         }
     }
 
+    findOpeningBracket(lines: string[], startPos: Position): Position | undefined {
+        for (let i = startPos.line; i < lines.length; i++) {
+            const line = lines[i];
+            const charIndex = line.indexOf("{");
+
+            if (charIndex !== -1) {
+                return new Position(i, charIndex);
+            }
+        }
+    }
+
     getExistingMethodsNames(doc: TextDocument): string[] {
         const lines = doc.getText().split("\n");
         const names = [];
@@ -98,7 +109,7 @@ export default class Parser {
 
         const behaviourPos = this.findBehaviour(lines);
         if (behaviourPos === undefined) return false;
-        const openingPos = this.findOpeningBracket(doc, behaviourPos);
+        const openingPos = this.findOpeningBracket(lines, behaviourPos);
         if (openingPos === undefined) return false;
         const closingPos = this.findClosingBracket(lines, openingPos);
         if (closingPos === undefined) return false;
@@ -127,18 +138,5 @@ export default class Parser {
         }
 
         return false;
-    }
-
-    findOpeningBracket(doc: TextDocument, behaviourPos: Position): Position | undefined {
-        const lines = doc.getText().split("\n");
-
-        for (let i = behaviourPos.line; i < lines.length; i++) {
-            const line = lines[i];
-            const char = line.search(/{/);
-
-            if (char !== -1) {
-                return new Position(i, char);
-            }
-        }
     }
 }
