@@ -108,9 +108,9 @@ export default class Parser {
     /**
      * Returns if a line is on the top level inside curly brackets pair.
      */
-    isLineTopLevel(lines: string[], openingBracketLineIndex: number, lineIndex: number): boolean {
+    isLineTopLevel(lines: string[], openingBracketLine: number, lineIndex: number): boolean {
         let count = 0;
-        for (let i = openingBracketLineIndex; i < lines.length; i++) {
+        for (let i = openingBracketLine; i < lines.length; i++) {
             const line = lines[i];
 
             if (i === lineIndex && count === 1 && !line.includes("}")) {
