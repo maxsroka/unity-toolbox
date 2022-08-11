@@ -98,24 +98,18 @@ export default class Parser {
         return names;
     }
 
-    isInBehaviour(lines: string[], pos: Position): boolean {
-        const behaviourPos = this.findBehaviour(lines);
-        if (behaviourPos === undefined) return false;
-        const openingPos = this.findOpeningBracket(lines, behaviourPos);
-        if (openingPos === undefined) return false;
-        const closingPos = this.findClosingBracket(lines, openingPos);
-        if (closingPos === undefined) return false;
-
-        return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && this.isTopLevel(lines, openingPos, pos);
-    }
-
-    isTopLevel(lines: string[], openingPos: Position, pos: Position): boolean {
+    /**
+     * Returns if the line is on the top level inside curly brackets pair.
+     */
+    isLineTopLevel(lines: string[], openingBracketLineIndex: number, lineIndex: number): boolean {
         let count = 0;
-        for (let i = openingPos.line; i < lines.length; i++) {
+        for (let i = openingBracketLineIndex; i < lines.length; i++) {
             const line = lines[i];
 
-            if (i === pos.line) {
-                return count === 1;
+            if (i === lineIndex) {
+                if (count === 1) {
+                    return !line.includes("}");
+                }
             }
 
             if (line.includes("{")) {
@@ -128,5 +122,16 @@ export default class Parser {
         }
 
         return false;
+    }
+
+    isInBehaviour(lines: string[], pos: Position): boolean {
+        const behaviourPos = this.findBehaviour(lines);
+        if (behaviourPos === undefined) return false;
+        const openingPos = this.findOpeningBracket(lines, behaviourPos);
+        if (openingPos === undefined) return false;
+        const closingPos = this.findClosingBracket(lines, openingPos);
+        if (closingPos === undefined) return false;
+
+        return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && this.isLineTopLevel(lines, openingPos.line, pos.line);
     }
 }
