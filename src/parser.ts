@@ -1,4 +1,3 @@
-import { TextDocument, Position } from "vscode";
 import * as messages from "./unity-messages.json";
 
 export default class Parser {
@@ -24,14 +23,14 @@ export default class Parser {
     }
 
     /**
-     * Checks if there is a Unity message in the line.
+     * Checks if there is a Unity message in a line.
      */
     hasUnityMessage(line: string): boolean {
         return this.isUnityMessageExp.test(line);
     }
 
     /**
-     * Finds the name of a method. It must have the return type of `void`.
+     * Finds the name of a method in a line. The method must have the return type of `void`.
      */
     findMethodsName(line: string): string | undefined {
         const matches = line.match(this.findMethodNameExp);
@@ -42,7 +41,7 @@ export default class Parser {
     }
 
     /**
-     * Finds the position of the first `MonoBehaviour` or `NetworkBehaviour` definition. The returned character is always zero.
+     * Finds the first line with `MonoBehaviour` or `NetworkBehaviour` definition.
      */
     findBehaviour(lines: string[]): number | undefined {
         for (let i = 0; i < lines.length; i++) {
@@ -54,6 +53,9 @@ export default class Parser {
         }
     }
 
+    /**
+     * Finds the line with the closing curly bracket.
+     */
     findClosingBracket(lines: string[], openingBracketLine: number): number | undefined {
         let count = 0;
         for (let i = openingBracketLine; i < lines.length; i++) {
@@ -73,6 +75,9 @@ export default class Parser {
         }
     }
 
+    /**
+     * Finds the first line with an opening curly bracket.
+     */
     findOpeningBracket(lines: string[], startLine: number): number | undefined {
         for (let i = startLine; i < lines.length; i++) {
             const line = lines[i];
@@ -83,6 +88,9 @@ export default class Parser {
         }
     }
 
+    /**
+     * Finds the names of all methods.
+     */
     findAllMethodsNames(lines: string[]): string[] {
         const names = [];
 
@@ -98,7 +106,7 @@ export default class Parser {
     }
 
     /**
-     * Returns if the line is on the top level inside curly brackets pair.
+     * Returns if a line is on the top level inside curly brackets pair.
      */
     isLineTopLevel(lines: string[], openingBracketLineIndex: number, lineIndex: number): boolean {
         let count = 0;
@@ -121,6 +129,9 @@ export default class Parser {
         return false;
     }
 
+    /**
+     * Checks if a line is inside a `MonoBehaviour` or `NetworkBehaviour`. 
+     */
     isInBehaviour(lines: string[], line: number): boolean {
         const behaviourLine = this.findBehaviour(lines);
         if (behaviourLine === undefined) return false;
