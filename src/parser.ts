@@ -113,7 +113,7 @@ export default class Parser {
         for (let i = openingBracketLine; i < lines.length; i++) {
             const line = lines[i];
 
-            if (i === lineIndex && count === 1 && !line.includes("}")) {
+            if (i === lineIndex && count === 1 && !line.includes("{") && !line.includes("}")) {
                 return true;
             }
 
