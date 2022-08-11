@@ -164,7 +164,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 3);
+            assert.equal(pos?.line, 2);
             assert.equal(pos?.character, 0);
         });
 
@@ -178,7 +178,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 3);
+            assert.equal(pos?.line, 2);
             assert.equal(pos?.character, 0);
         });
 
@@ -197,7 +197,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 3);
+            assert.equal(pos?.line, 2);
             assert.equal(pos?.character, 0);
         });
 
@@ -211,7 +211,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 3);
+            assert.equal(pos?.line, 2);
             assert.equal(pos?.character, 0);
         });
 
@@ -225,7 +225,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 3);
+            assert.equal(pos?.line, 2);
             assert.equal(pos?.character, 0);
         });
 
@@ -239,7 +239,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 3);
+            assert.equal(pos?.line, 2);
             assert.equal(pos?.character, 0);
         });
 
@@ -253,7 +253,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 3);
+            assert.equal(pos?.line, 2);
             assert.equal(pos?.character, 0);
         });
 
@@ -267,7 +267,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 3);
+            assert.equal(pos?.line, 2);
             assert.equal(pos?.character, 0);
         });
 
@@ -281,7 +281,7 @@ suite("parser", () => {
                 "}",
             ]);
 
-            assert.equal(pos?.line, 5);
+            assert.equal(pos?.line, 4);
             assert.equal(pos?.character, 0);
         });
 
@@ -295,7 +295,7 @@ suite("parser", () => {
                     "}",
                 ]);
 
-                assert.equal(pos?.line, 3);
+                assert.equal(pos?.line, 2);
                 assert.equal(pos?.character, 0);
             });
 
@@ -306,7 +306,7 @@ suite("parser", () => {
                     "public class Test : MonoBehaviour { }",
                 ]);
 
-                assert.equal(pos?.line, 3);
+                assert.equal(pos?.line, 2);
                 assert.equal(pos?.character, 0);
             });
 
@@ -317,7 +317,7 @@ suite("parser", () => {
                     "public class Test : MonoBehaviour{}",
                 ]);
 
-                assert.equal(pos?.line, 3);
+                assert.equal(pos?.line, 2);
                 assert.equal(pos?.character, 0);
             });
         });
@@ -336,16 +336,27 @@ suite("parser", () => {
             assert.equal(pos?.character, 0);
         });
 
-        test("same line", () => {
+        test("brackets same line", () => {
             const pos = parser.findClosingBracket([
                 "void Test(){}",
-            ], new Position(0, 12));
+            ], new Position(0, 11));
 
             assert.equal(pos?.line, 0);
             assert.equal(pos?.character, 12);
         });
 
-        test("nested", () => {
+        test("bracket same line", () => {
+            const pos = parser.findClosingBracket([
+                "void Test() {",
+                "",
+                "}",
+            ], new Position(0, 12));
+
+            assert.equal(pos?.line, 2);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("parent", () => {
             const pos = parser.findClosingBracket([
                 "void Test()",
                 "{",
@@ -357,6 +368,20 @@ suite("parser", () => {
 
             assert.equal(pos?.line, 5);
             assert.equal(pos?.character, 0);
+        });
+
+        test("nested", () => {
+            const pos = parser.findClosingBracket([
+                "void Test()",
+                "{",
+                "   {",
+                "       void Nested() { }",
+                "   }",
+                "}",
+            ], new Position(2, 0));
+
+            assert.equal(pos?.line, 4);
+            assert.equal(pos?.character, 3);
         });
     });
 
@@ -373,7 +398,7 @@ suite("parser", () => {
             assert.equal(pos?.character, 0);
         });
 
-        test("same line", () => {
+        test("brackets same line", () => {
             const pos = parser.findOpeningBracket([
                 "void Test(){}",
             ], new Position(0, 0));
@@ -382,7 +407,18 @@ suite("parser", () => {
             assert.equal(pos?.character, 11);
         });
 
-        test("nested", () => {
+        test("bracket same line", () => {
+            const pos = parser.findOpeningBracket([
+                "void Test() {",
+                "",
+                "}",
+            ], new Position(0, 0));
+
+            assert.equal(pos?.line, 0);
+            assert.equal(pos?.character, 12);
+        });
+
+        test("parent", () => {
             const pos = parser.findOpeningBracket([
                 "void Test()",
                 "{",
@@ -394,6 +430,35 @@ suite("parser", () => {
 
             assert.equal(pos?.line, 1);
             assert.equal(pos?.character, 0);
+        });
+
+        test("nested", () => {
+            const pos = parser.findOpeningBracket([
+                "void Test()",
+                "{",
+                "   void Nested1()",
+                "   {",
+                "       void Nested2() { }",
+                "   }",
+                "}",
+            ], new Position(2, 0));
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 3);
+        });
+
+        test("start end same line", () => {
+            const pos = parser.findOpeningBracket([
+                "void Test()",
+                "{",
+                "   {",
+                "       void Nested() { }",
+                "   }",
+                "}",
+            ], new Position(2, 0));
+
+            assert.equal(pos?.line, 2);
+            assert.equal(pos?.character, 3);
         });
     });
 
@@ -464,7 +529,7 @@ suite("parser", () => {
     });
 
     suite("isLineTopLevel", () => {
-        test("1", () => {
+        test("basic true", () => {
             const is = parser.isLineTopLevel([
                 "using UnityEngine;",
                 "",
@@ -477,7 +542,7 @@ suite("parser", () => {
             assert.equal(is, true);
         });
 
-        test("2", () => {
+        test("basic false", () => {
             const is = parser.isLineTopLevel([
                 "using UnityEngine;",
                 "",
@@ -490,7 +555,7 @@ suite("parser", () => {
             assert.equal(is, false);
         });
 
-        test("3", () => {
+        test("pos is closing", () => {
             const is = parser.isLineTopLevel([
                 "using UnityEngine;",
                 "",
@@ -503,7 +568,7 @@ suite("parser", () => {
             assert.equal(is, false);
         });
 
-        test("4", () => {
+        test("pos is opening", () => {
             const is = parser.isLineTopLevel([
                 "using UnityEngine;",
                 "",
@@ -515,10 +580,22 @@ suite("parser", () => {
 
             assert.equal(is, false);
         });
+
+        test("bracket definition line", () => {
+            const is = parser.isLineTopLevel([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour {",
+                "",
+                "}",
+            ], 2, 3);
+
+            assert.equal(is, true);
+        });
     });
 
     suite("isInBehaviour", () => {
-        test("1", () => {
+        test("basic true", () => {
             const is = parser.isInBehaviour([
                 "using UnityEngine;",
                 "",
@@ -531,7 +608,7 @@ suite("parser", () => {
             assert.equal(is, true);
         });
 
-        test("2", () => {
+        test("basic false", () => {
             const is = parser.isInBehaviour([
                 "using UnityEngine;",
                 "",
@@ -544,7 +621,7 @@ suite("parser", () => {
             assert.equal(is, false);
         });
 
-        test("3", () => {
+        test("closing pos", () => {
             const is = parser.isInBehaviour([
                 "using UnityEngine;",
                 "",
@@ -557,7 +634,7 @@ suite("parser", () => {
             assert.equal(is, false);
         });
 
-        test("4", () => {
+        test("opening pos", () => {
             const is = parser.isInBehaviour([
                 "using UnityEngine;",
                 "",
@@ -568,6 +645,18 @@ suite("parser", () => {
             ], new Position(3, 0));
 
             assert.equal(is, false);
+        });
+
+        test("bracket definition line", () => {
+            const is = parser.isInBehaviour([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour {",
+                "",
+                "}",
+            ], new Position(3, 0));
+
+            assert.equal(is, true);
         });
     });
 });

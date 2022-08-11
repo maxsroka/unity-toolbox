@@ -49,7 +49,7 @@ export default class Parser {
             const line = lines[i];
             if (!this.findBehaviourExp.test(line)) continue;
 
-            return new Position(i + 1, 0);
+            return new Position(i, 0);
         }
     }
 
@@ -106,10 +106,8 @@ export default class Parser {
         for (let i = openingBracketLineIndex; i < lines.length; i++) {
             const line = lines[i];
 
-            if (i === lineIndex) {
-                if (count === 1) {
-                    return !line.includes("}");
-                }
+            if (i === lineIndex && count === 1 && !line.includes("}")) {
+                return true;
             }
 
             if (line.includes("{")) {
