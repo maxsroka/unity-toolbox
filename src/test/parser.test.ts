@@ -1,4 +1,5 @@
 import assert = require("assert");
+import { Position } from "vscode";
 import Parser from "../parser";
 
 const parser = new Parser();
@@ -319,6 +320,43 @@ suite("parser", () => {
                 assert.equal(pos?.line, 3);
                 assert.equal(pos?.character, 0);
             });
+        });
+    });
+
+    suite("findClosingBracket", () => {
+        test("basic", () => {
+            const pos = parser.findClosingBracket([
+                "void Test()",
+                "{",
+                "",
+                "}",
+            ], new Position(1, 0));
+
+            assert.equal(pos?.line, 3);
+            assert.equal(pos?.character, 0);
+        });
+
+        test("same line", () => {
+            const pos = parser.findClosingBracket([
+                "void Test(){}",
+            ], new Position(0, 12));
+
+            assert.equal(pos?.line, 0);
+            assert.equal(pos?.character, 12);
+        });
+
+        test("nested", () => {
+            const pos = parser.findClosingBracket([
+                "void Test()",
+                "{",
+                "   {",
+                "       void Nested() { }",
+                "   }",
+                "}",
+            ], new Position(1, 0));
+
+            assert.equal(pos?.line, 5);
+            assert.equal(pos?.character, 0);
         });
     });
 });

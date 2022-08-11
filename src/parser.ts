@@ -53,6 +53,26 @@ export default class Parser {
         }
     }
 
+    findClosingBracket(lines: string[], openingBracket: Position): Position | undefined {
+        let count = 0;
+        for (let i = openingBracket.line; i < lines.length; i++) {
+            const line = lines[i];
+
+            if (line.includes("{")) {
+                count += 1;
+            }
+
+            const charIndex = line.indexOf("}");
+            if (charIndex !== -1) {
+                count -= 1;
+
+                if (count === 0) {
+                    return new Position(i, charIndex);
+                }
+            }
+        }
+    }
+
     getExistingMethodsNames(doc: TextDocument): string[] {
         const lines = doc.getText().split("\n");
         const names = [];
@@ -80,7 +100,7 @@ export default class Parser {
         if (behaviourPos === undefined) return false;
         const openingPos = this.findOpeningBracket(doc, behaviourPos);
         if (openingPos === undefined) return false;
-        const closingPos = this.findClosingBracket(doc, openingPos);
+        const closingPos = this.findClosingBracket(lines, openingPos);
         if (closingPos === undefined) return false;
 
         return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && this.isTopLevel(doc, openingPos, pos);
@@ -107,28 +127,6 @@ export default class Parser {
         }
 
         return false;
-    }
-
-    findClosingBracket(doc: TextDocument, openingPos: Position): Position | undefined {
-        const lines = doc.getText().split("\n");
-
-        let count = 1;
-        for (let i = openingPos.line + 1; i < lines.length; i++) {
-            const line = lines[i];
-
-            if (line.includes("{")) {
-                count += 1;
-            }
-
-            const char = line.indexOf("}");
-            if (char !== -1) {
-                count -= 1;
-
-                if (count === 0) {
-                    return new Position(i, char);
-                }
-            }
-        }
     }
 
     findOpeningBracket(doc: TextDocument, behaviourPos: Position): Position | undefined {
