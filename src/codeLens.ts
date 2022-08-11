@@ -11,7 +11,7 @@ export default class UnityMessageCodeLensProvider implements CodeLensProvider {
             const line = lines[i];
 
             if (!parser.hasUnityMessage(line)) continue;
-            if (!parser.isInBehaviour(doc, new Position(i, 0))) continue;
+            if (!parser.isInBehaviour(lines, new Position(i, 0))) continue;
 
             let cmd: Command = {
                 command: "",

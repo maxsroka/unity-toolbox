@@ -7,7 +7,7 @@ export default class UnityMessageHoverProvider implements HoverProvider {
         const lines = doc.getText().split("\n");
         const line = lines[pos.line];
 
-        if (!parser.isInBehaviour(doc, pos)) return;
+        if (!parser.isInBehaviour(lines, pos)) return;
         if (!parser.hasUnityMessage(line)) return;
 
         const methodName = parser.findMethodsName(line);

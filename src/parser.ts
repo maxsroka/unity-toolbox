@@ -84,14 +84,13 @@ export default class Parser {
         }
     }
 
-    getExistingMethodsNames(doc: TextDocument): string[] {
-        const lines = doc.getText().split("\n");
+    findAllMethodsNames(lines: string[]): string[] {
         const names = [];
 
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
 
-            if (!this.isInBehaviour(doc, new Position(i, 0))) continue;
+            if (!this.isInBehaviour(lines, new Position(i, 0))) continue;
 
             const methodName = this.findMethodsName(line);
 
@@ -103,10 +102,7 @@ export default class Parser {
         return names;
     }
 
-    isInBehaviour(doc: TextDocument, pos: Position): boolean {
-        const text = doc.getText();
-        const lines = text.split("\n");
-
+    isInBehaviour(lines: string[], pos: Position): boolean {
         const behaviourPos = this.findBehaviour(lines);
         if (behaviourPos === undefined) return false;
         const openingPos = this.findOpeningBracket(lines, behaviourPos);
@@ -114,12 +110,10 @@ export default class Parser {
         const closingPos = this.findClosingBracket(lines, openingPos);
         if (closingPos === undefined) return false;
 
-        return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && this.isTopLevel(doc, openingPos, pos);
+        return pos.isAfter(openingPos) && pos.isBeforeOrEqual(closingPos) && this.isTopLevel(lines, openingPos, pos);
     }
 
-    isTopLevel(doc: TextDocument, openingPos: Position, pos: Position): boolean {
-        const lines = doc.getText().split("\n");
-
+    isTopLevel(lines: string[], openingPos: Position, pos: Position): boolean {
         let count = 0;
         for (let i = openingPos.line; i < lines.length; i++) {
             const line = lines[i];
