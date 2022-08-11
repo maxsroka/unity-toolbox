@@ -3,7 +3,7 @@ import * as messages from "./unity-messages.json";
 
 export default class Parser {
     private findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
-    private findMethodNameExp = new RegExp(/void *(.*?) *\(.*?\)/);
+    private findMethodNameExp = new RegExp(/void *(.*?) *\(.*\)/);
     private isUnityMessageExp: RegExp;
 
     constructor() {
@@ -19,7 +19,7 @@ export default class Parser {
             }
         }
 
-        this.isUnityMessageExp = new RegExp("void.*(" + methodsNames + ")\\(.*\\)");
+        this.isUnityMessageExp = new RegExp("void *(" + methodsNames + ") *\\(.*\\)");
         // ^ needs double escape (\\) because a single one would get lost when adding strings
     }
 
