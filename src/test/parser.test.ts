@@ -396,4 +396,70 @@ suite("parser", () => {
             assert.equal(pos?.character, 0);
         });
     });
+
+    suite("findAllMethodsNames", () => {
+        test("basic", () => {
+            const names = parser.findAllMethodsNames([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "   void Start()",
+                "   {",
+                "       ",
+                "   }",
+                "}",
+            ]);
+
+            assert.equal(names[0], "Start");
+        });
+
+        test("same class name", () => {
+            const names = parser.findAllMethodsNames([
+                "using UnityEngine;",
+                "",
+                "public class Start : MonoBehaviour",
+                "{",
+                "   void Start()",
+                "   {",
+                "       ",
+                "   }",
+                "}",
+            ]);
+
+            assert.equal(names[0], "Start");
+        });
+
+        test("no methods", () => {
+            const names = parser.findAllMethodsNames([
+                "using UnityEngine;",
+                "",
+                "public class MyClass : MonoBehaviour",
+                "{",
+                "   ",
+                "}",
+            ]);
+
+            assert.equal(names[0], undefined);
+        })
+
+        test("multiple", () => {
+            const names = parser.findAllMethodsNames([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "   void Start()",
+                "   {",
+                "       ",
+                "   }",
+                "   ",
+                "   void Update() { }",
+                "}",
+            ]);
+
+            assert.equal(names[0], "Start");
+            assert.equal(names[1], "Update");
+        });
+    });
 });

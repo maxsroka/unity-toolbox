@@ -87,15 +87,11 @@ export default class Parser {
     findAllMethodsNames(lines: string[]): string[] {
         const names = [];
 
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i];
+        for (const line of lines) {
+            const name = this.findMethodsName(line);
 
-            if (!this.isInBehaviour(lines, new Position(i, 0))) continue;
-
-            const methodName = this.findMethodsName(line);
-
-            if (methodName !== undefined) {
-                names.push(methodName);
+            if (name !== undefined) {
+                names.push(name);
             }
         }
 
