@@ -1,0 +1,40 @@
+[
+    {
+        "name": "MonoBehaviour",
+        "description": "desc",
+        "body": [
+            "using UnityEngine;",
+            "",
+            "public class ${TM_FILENAME_BASE:Example} : MonoBehaviour",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "NetworkBehaviour",
+        "description": "desc",
+        "body": [
+            "using UnityEngine;",
+            "using ${1|Mirror,Unity.Netcode|};",
+            "",
+            "public class ${TM_FILENAME_BASE:Example} : NetworkBehaviour",
+            "{",
+            "\t$2",
+            "}"
+        ]
+    },
+    {
+        "name": "ScriptableObject",
+        "description": "desc",
+        "body": [
+            "using UnityEngine;",
+            "",
+            "[CreateAssetMenu(menuName = \"${2:WORKSPACE_NAME}/${1:$TM_FILENAME_BASE}\")]",
+            "public class ${TM_FILENAME_BASE:Example} : ScriptableObject",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    }
+]

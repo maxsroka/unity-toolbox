@@ -25,50 +25,5 @@
         "body": [
             "Debug.LogError(${TM_SELECTED_TEXT:$0});"
         ]
-    },
-    "MonoBehaviour": {
-        "prefix": [
-            "MonoBehaviour"
-        ],
-        "description": "An empty MonoBehaviour.",
-        "body": [
-            "using UnityEngine;",
-            "",
-            "public class ${TM_FILENAME_BASE:Example} : MonoBehaviour",
-            "{",
-            "\t$0",
-            "}"
-        ]
-    },
-    "ScriptableObject": {
-        "prefix": [
-            "so",
-            "ScriptableObject"
-        ],
-        "description": "An empty ScriptableObject.",
-        "body": [
-            "using UnityEngine;",
-            "",
-            "[CreateAssetMenu(menuName = \"${2:WORKSPACE_NAME}/${1:$TM_FILENAME_BASE}\")]",
-            "public class ${TM_FILENAME_BASE:Example} : ScriptableObject",
-            "{",
-            "\t$0",
-            "}"
-        ]
-    },
-    "NetworkBehaviour": {
-        "prefix": [
-            "NetworkBehaviour"
-        ],
-        "description": "An empty NetworkBehaviour.",
-        "body": [
-            "using UnityEngine;",
-            "using ${1|Mirror,Unity.Netcode|};",
-            "",
-            "public class ${TM_FILENAME_BASE:Example} : NetworkBehaviour",
-            "{",
-            "\t$2",
-            "}"
-        ]
     }
 }
