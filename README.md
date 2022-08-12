@@ -1,7 +1,5 @@
-<img src="https://github.com/pixldev/Unity-Toolbox/blob/main/showcase.gif">
-<h2>Features</h2>
-<ul><b>
-<li>CodeLens for event methods</li>
-<li>Snippets</li>
-<li>Open documentation command</li>
-  </b></ul>
+<div align="center">
+<img src="./icon.png" width="128px" height="128px">
+<h1>Unity Toolbox</h1>
+<span>A set of tools for VSCode & Unity</span>
+</div>
