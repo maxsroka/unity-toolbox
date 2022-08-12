@@ -19,7 +19,7 @@ export class UnityMessageSnippetsProvider implements CompletionItemProvider {
             item.detail = `${msg.name} (Unity Message)`;
             item.documentation = msg.description;
 
-            let snippet = applyBracketsStyle(msg.body).join("\n");
+            let snippet = applyBracketsStyle(msg.body, 0).join("\n");
             item.insertText = new SnippetString(snippet);
 
             items.push(item);
@@ -35,7 +35,7 @@ enum BracketsStyle {
     SameLineWithoutSpace = "same line, without space",
 }
 
-function applyBracketsStyle(body: string[]): string[] {
+function applyBracketsStyle(body: string[], definitionLine: number): string[] {
     let snippet: string[];
     const bracketsStyle = workspace.getConfiguration("unityToolbox").get("bracketsStyle");
 
@@ -45,10 +45,15 @@ function applyBracketsStyle(body: string[]): string[] {
         snippet = [];
         const bracket = bracketsStyle === BracketsStyle.SameLineWithSpace ? " {" : "{";
 
-        snippet[0] = body[0] + bracket;
-
-        for (let i = 2; i < body.length; i++) {
-            snippet.push(body[i]);
+        for (let i = 0; i < body.length; i++) {
+            if (i === definitionLine) {
+                snippet[i] = body[i] + bracket;
+                continue;
+            } else if (i === definitionLine + 1) {
+                continue;
+            } else {
+                snippet.push(body[i]);
+            }
         }
     }
 
@@ -57,11 +62,6 @@ function applyBracketsStyle(body: string[]): string[] {
 
 export class ScriptTemplatesSnippetsProvider implements CompletionItemProvider {
     provideCompletionItems(doc: TextDocument, pos: Position, token: CancellationToken, context: CompletionContext): ProviderResult<CompletionItem[] | CompletionList<CompletionItem>> {
-        const lines = doc.getText().split("\n");
-        const line = lines[pos.line];
-
-        if (!parser.isLineOnBracketsLevel(lines, 0, pos.line)) return;
-
         const items = [];
 
         for (const template of templates) {
@@ -70,7 +70,10 @@ export class ScriptTemplatesSnippetsProvider implements CompletionItemProvider {
             item.detail = `${template.name} (Script Template)`;
             item.documentation = template.description;
 
-            let snippet = applyBracketsStyle(template.body).join("\n");
+            const classLine = parser.findClass(template.body);
+            if (classLine === undefined) return;
+
+            const snippet = applyBracketsStyle(template.body, classLine).join("\n");
             item.insertText = new SnippetString(snippet);
 
             items.push(item);

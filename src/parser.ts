@@ -142,4 +142,17 @@ export default class Parser {
 
         return line > openingLine && line < closingLine && this.isLineOnBracketsLevel(lines, openingLine, line);
     }
+
+    /**
+     * Finds the first class and returns its line.
+     */
+    findClass(lines: string[]): number | undefined {
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+
+            if (line.includes("class")) {
+                return i;
+            }
+        }
+    }
 }

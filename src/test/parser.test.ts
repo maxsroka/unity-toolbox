@@ -636,4 +636,30 @@ suite("parser", () => {
             assert.equal(is, true);
         });
     });
+
+    suite("findClass", () => {
+        test("basic", () => {
+            const index = parser.findClass([
+                "",
+                "public class Test",
+                "{",
+                "   ",
+                "}",
+            ]);
+
+            assert.equal(index, 1);
+        });
+
+        test("no class", () => {
+            const index = parser.findClass([
+                "",
+                "struct Test",
+                "{",
+                "   ",
+                "}",
+            ]);
+
+            assert.equal(index, undefined);
+        })
+    })
 });
