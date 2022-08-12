@@ -55,6 +55,12 @@
           "when": "editorHasSelection == true",
           "group": "Unity Toolbox"
         }
+      ],
+      "commandPalette": [
+        {
+          "command": "unityToolbox.searchInUnityDocumentation",
+          "when": "false"
+        }
       ]
     },
     "commands": [
