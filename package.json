@@ -35,12 +35,19 @@
         "path": "./src/other-snippets.json"
       }
     ],
-    "commands": [
-      {
-        "command": "unityToolbox.openDocumentation",
-        "title": "Unity Toolbox: Open Unity Documentation"
+    "configuration": {
+      "title": "Unity Toolbox",
+      "properties": {
+        "unityToolbox.bracketsStyle": {
+          "enum": [
+            "new line",
+            "same line, with space",
+            "same line, without space"
+          ],
+          "default": "new line"
+        }
       }
-    ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",

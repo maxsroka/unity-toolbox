@@ -1,4 +1,4 @@
-import { CancellationToken, CompletionItemKind, SnippetString, CompletionContext, CompletionItem, CompletionItemProvider, CompletionList, Position, ProviderResult, TextDocument, CompletionItemTag } from "vscode";
+import { CancellationToken, CompletionItemKind, SnippetString, CompletionContext, CompletionItem, CompletionItemProvider, CompletionList, Position, ProviderResult, TextDocument, CompletionItemTag, workspace } from "vscode";
 import { parser } from "./extension"
 import * as messages from "./unity-messages.json";
 
@@ -17,11 +17,34 @@ export default class UnityMessageSnippetsProvider implements CompletionItemProvi
             item.kind = CompletionItemKind.Method;
             item.detail = `${msg.name} (Unity Message)`;
             item.documentation = msg.description;
-            item.insertText = new SnippetString(msg.body.join("\n"));
+
+            let snippet: string[];
+            const bracketsStyle = workspace.getConfiguration("unityToolbox").get("bracketsStyle");
+
+            if (bracketsStyle === BracketsStyle.NewLine) {
+                snippet = msg.body;
+            } else {
+                snippet = [];
+                const bracket = bracketsStyle === BracketsStyle.SameLineWithSpace ? " {" : "{";
+
+                snippet[0] = msg.body[0] + bracket;
+
+                for (let i = 2; i < msg.body.length; i++) {
+                    snippet.push(msg.body[i]);
+                }
+            }
+
+            item.insertText = new SnippetString(snippet.join("\n"));
 
             items.push(item);
         }
 
         return items;
     }
+}
+
+enum BracketsStyle {
+    NewLine = "new line",
+    SameLineWithSpace = "same line, with space",
+    SameLineWithoutSpace = "same line, without space",
 }
