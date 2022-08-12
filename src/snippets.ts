@@ -57,7 +57,10 @@ function applyBracketsStyle(body: string[]): string[] {
 
 export class ScriptTemplatesSnippetsProvider implements CompletionItemProvider {
     provideCompletionItems(doc: TextDocument, pos: Position, token: CancellationToken, context: CompletionContext): ProviderResult<CompletionItem[] | CompletionList<CompletionItem>> {
-        if (doc.lineCount > 1) return;
+        const lines = doc.getText().split("\n");
+        const line = lines[pos.line];
+
+        if (!parser.isLineOnBracketsLevel(lines, 0, pos.line)) return;
 
         const items = [];
 

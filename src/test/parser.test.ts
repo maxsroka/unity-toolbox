@@ -505,9 +505,9 @@ suite("parser", () => {
         });
     });
 
-    suite("isLineTopLevel", () => {
+    suite("isLineOnBracketsLevel", () => {
         test("basic true", () => {
-            const is = parser.isLineTopLevel([
+            const is = parser.isLineOnBracketsLevel([
                 "using UnityEngine;",
                 "",
                 "public class Test : MonoBehaviour",
@@ -520,7 +520,7 @@ suite("parser", () => {
         });
 
         test("basic false", () => {
-            const is = parser.isLineTopLevel([
+            const is = parser.isLineOnBracketsLevel([
                 "using UnityEngine;",
                 "",
                 "public class Test : MonoBehaviour",
@@ -533,7 +533,7 @@ suite("parser", () => {
         });
 
         test("pos is closing", () => {
-            const is = parser.isLineTopLevel([
+            const is = parser.isLineOnBracketsLevel([
                 "using UnityEngine;",
                 "",
                 "public class Test : MonoBehaviour",
@@ -546,7 +546,7 @@ suite("parser", () => {
         });
 
         test("pos is opening", () => {
-            const is = parser.isLineTopLevel([
+            const is = parser.isLineOnBracketsLevel([
                 "using UnityEngine;",
                 "",
                 "public class Test : MonoBehaviour",
@@ -559,7 +559,7 @@ suite("parser", () => {
         });
 
         test("bracket definition line", () => {
-            const is = parser.isLineTopLevel([
+            const is = parser.isLineOnBracketsLevel([
                 "using UnityEngine;",
                 "",
                 "public class Test : MonoBehaviour {",

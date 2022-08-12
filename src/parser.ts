@@ -108,7 +108,7 @@ export default class Parser {
     /**
      * Returns if a line is on the top level inside curly brackets pair.
      */
-    isLineTopLevel(lines: string[], openingBracketLine: number, lineIndex: number): boolean {
+    isLineOnBracketsLevel(lines: string[], openingBracketLine: number, lineIndex: number): boolean {
         let count = 0;
         for (let i = openingBracketLine; i < lines.length; i++) {
             const line = lines[i];
@@ -140,6 +140,6 @@ export default class Parser {
         const closingLine = this.findClosingBracket(lines, openingLine);
         if (closingLine === undefined) return false;
 
-        return line > openingLine && line < closingLine && this.isLineTopLevel(lines, openingLine, line);
+        return line > openingLine && line < closingLine && this.isLineOnBracketsLevel(lines, openingLine, line);
     }
 }
