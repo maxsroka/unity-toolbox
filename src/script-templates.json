@@ -1,11 +1,11 @@
 [
     {
         "name": "MonoBehaviour",
-        "description": "desc",
+        "description": "An empty MonoBehaviour template.",
         "body": [
             "using UnityEngine;",
             "",
-            "public class ${TM_FILENAME_BASE:Example} : MonoBehaviour",
+            "public class $TM_FILENAME_BASE : MonoBehaviour",
             "{",
             "\t$0",
             "}"
@@ -13,12 +13,12 @@
     },
     {
         "name": "NetworkBehaviour",
-        "description": "desc",
+        "description": "An empty NetworkBehaviour template.",
         "body": [
             "using UnityEngine;",
             "using ${1|Mirror,Unity.Netcode|};",
             "",
-            "public class ${TM_FILENAME_BASE:Example} : NetworkBehaviour",
+            "public class $TM_FILENAME_BASE : NetworkBehaviour",
             "{",
             "\t$2",
             "}"
@@ -26,12 +26,12 @@
     },
     {
         "name": "ScriptableObject",
-        "description": "desc",
+        "description": "An empty Scriptable Object template.",
         "body": [
             "using UnityEngine;",
             "",
-            "[CreateAssetMenu(menuName = \"${2:WORKSPACE_NAME}/${1:$TM_FILENAME_BASE}\")]",
-            "public class ${TM_FILENAME_BASE:Example} : ScriptableObject",
+            "[CreateAssetMenu(menuName = \"${2:$WORKSPACE_NAME}/${1:$TM_FILENAME_BASE}\")]",
+            "public class $TM_FILENAME_BASE : ScriptableObject",
             "{",
             "\t$0",
             "}"
