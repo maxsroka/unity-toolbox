@@ -36,5 +36,19 @@
             "\t$0",
             "}"
         ]
+    },
+    {
+        "name": "Editor",
+        "description": "An empty Editor template.",
+        "body": [
+            "using UnityEngine;",
+            "using UnityEditor;",
+            "",
+            "[CustomEditor(typeof($1))]",
+            "public class $1Editor : Editor",
+            "{",
+            "   $0",
+            "}"
+        ]
     }
 ]
