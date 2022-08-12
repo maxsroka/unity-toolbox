@@ -47,7 +47,22 @@
           "default": "new line"
         }
       }
-    }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "unityToolbox.searchInUnityDocumentation",
+          "when": "editorHasSelection == true",
+          "group": "Unity Toolbox"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "unityToolbox.searchInUnityDocumentation",
+        "title": "Search In Unity Documentation"
+      }
+    ]
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
