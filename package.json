@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "publisher": "pixl",
   "displayName": "Unity Toolbox",
-  "description": "-",
+  "description": "A set of tools for VSCode & Unity",
   "license": "SEE LICENSE IN LICENSE",
   "icon": "icon.png",
   "repository": {
