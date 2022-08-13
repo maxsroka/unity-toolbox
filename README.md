@@ -16,7 +16,7 @@
 <h2>Script Templates</h2>
 <img src="gifs/templates.gif">
 <br/>
-<h2>Search for selection in the documentation</h2>
+<h2>Documentation Search</h2>
 <img src="gifs/search.gif">
 <br/>
 <h2>Configurable Brackets Style</h2>
