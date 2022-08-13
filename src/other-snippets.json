@@ -1,0 +1,29 @@
+{
+    "Log": {
+        "prefix": [
+            "Log"
+        ],
+        "description": "Logs a message.",
+        "body": [
+            "Debug.Log(${TM_SELECTED_TEXT:$0});"
+        ]
+    },
+    "LogWarning": {
+        "prefix": [
+            "LogWarning"
+        ],
+        "description": "Logs a warning message.",
+        "body": [
+            "Debug.LogWarning(${TM_SELECTED_TEXT:$0});"
+        ]
+    },
+    "LogError": {
+        "prefix": [
+            "LogError"
+        ],
+        "description": "Logs an error message.",
+        "body": [
+            "Debug.LogError(${TM_SELECTED_TEXT:$0});"
+        ]
+    }
+}

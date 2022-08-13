@@ -1,14 +1,17 @@
 {
   "name": "unity-toolbox",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "publisher": "pixl",
   "displayName": "Unity Toolbox",
-  "description": "Makes using Unity with VSCode a better experience.",
+  "description": "A set of tools for VSCode & Unity",
   "license": "SEE LICENSE IN LICENSE",
-  "icon": "icon.png",
+  "icon": "feather/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/pixldev/Unity-Toolbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pixldev/Unity-Toolbox/issues"
   },
   "keywords": [
     "unity",
@@ -18,41 +21,56 @@
     "csharp"
   ],
   "engines": {
-    "vscode": "^1.22.0"
+    "vscode": "^1.70.0"
   },
   "categories": [
     "Snippets",
     "Programming Languages"
   ],
   "activationEvents": [
-    "onCommand:unityToolbox.openDocumentation",
     "onLanguage:csharp"
   ],
   "main": "./out/extension",
   "contributes": {
-    "configuration": {
-      "properties": {
-        "unityToolbox.codeLensForUnityEventMethods": {
-          "type": "boolean",
-          "default": true,
-          "description": "Provide CodeLens for Unity event methods."
-        }
-      }
-    },
     "snippets": [
       {
         "language": "csharp",
-        "path": "./src/snippets/event-methods-snippets.json"
-      },
-      {
-        "language": "csharp",
-        "path": "./src/snippets/other-snippets.json"
+        "path": "./src/other-snippets.json"
       }
     ],
+    "configuration": {
+      "title": "Unity Toolbox",
+      "properties": {
+        "unityToolbox.bracketsStyle": {
+          "enum": [
+            "new line",
+            "same line, with space",
+            "same line, without space"
+          ],
+          "default": "new line",
+          "description": "Changes how the first curly bracket is inserted in snippets."
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "unityToolbox.searchInUnityDocumentation",
+          "when": "editorHasSelection == true",
+          "group": "Unity Toolbox"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "unityToolbox.searchInUnityDocumentation",
+          "when": "false"
+        }
+      ]
+    },
     "commands": [
       {
-        "command": "unityToolbox.openDocumentation",
-        "title": "Unity Toolbox: Open Unity Documentation"
+        "command": "unityToolbox.searchInUnityDocumentation",
+        "title": "Search In Unity Documentation"
       }
     ]
   },
@@ -62,8 +80,13 @@
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@types/node": "12.12.2",
-    "@types/vscode": "1.14.0",
-    "typescript": "3.4.3"
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^9.1.1",
+    "@types/node": "^18.6.4",
+    "@types/vscode": "^1.69.1",
+    "@vscode/test-electron": "^2.1.5",
+    "glob": "^8.0.3",
+    "mocha": "^10.0.0",
+    "typescript": "^4.7.4"
   }
 }
