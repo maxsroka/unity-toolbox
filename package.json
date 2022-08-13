@@ -5,7 +5,7 @@
   "displayName": "Unity Toolbox",
   "description": "A set of tools for VSCode & Unity",
   "license": "SEE LICENSE IN LICENSE",
-  "icon": "icon.png",
+  "icon": "feather/icon.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/pixldev/Unity-Toolbox.git"
