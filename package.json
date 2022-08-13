@@ -47,7 +47,8 @@
             "same line, with space",
             "same line, without space"
           ],
-          "default": "new line"
+          "default": "new line",
+          "description": "Changes how the first curly bracket is inserted in snippets."
         }
       }
     },
