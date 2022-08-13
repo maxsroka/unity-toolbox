@@ -19,5 +19,5 @@
 <h2>Search for selection in the documentation</h2>
 <img src="gifs/search.gif">
 <br/>
-<h2>Search for selection in the documentation</h2>
+<h2>Configurable Brackets Style</h2>
 <img src="imgs/settings.png">
