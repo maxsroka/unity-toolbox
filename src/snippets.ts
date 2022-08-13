@@ -8,6 +8,13 @@ export class UnityMessageSnippetsProvider implements CompletionItemProvider {
         const lines = doc.getText().split("\n");
         if (!parser.isInBehaviour(lines, pos.line)) return;
 
+        const behaviour = parser.findBehaviour(lines);
+        if (behaviour === undefined) return;
+        const openingLine = parser.findOpeningBracket(lines, behaviour);
+        if (openingLine === undefined) return;
+
+        if (!parser.isLineOnBracketsLevel(lines, openingLine, pos.line)) return;
+
         const items = [];
         const existingMethods = parser.findAllMethodsNames(lines);
 

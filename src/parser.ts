@@ -113,7 +113,7 @@ export default class Parser {
         for (let i = openingBracketLine; i < lines.length; i++) {
             const line = lines[i];
 
-            if (i === lineIndex && count === 1 && !line.includes("{") && !line.includes("}")) {
+            if (i === lineIndex && count === 1 && (!line.includes("{") && !line.includes("}") || line.includes("{") && line.includes("}"))) {
                 return true;
             }
 
@@ -140,7 +140,7 @@ export default class Parser {
         const closingLine = this.findClosingBracket(lines, openingLine);
         if (closingLine === undefined) return false;
 
-        return line > openingLine && line < closingLine && this.isLineOnBracketsLevel(lines, openingLine, line);
+        return line > openingLine && line < closingLine;
     }
 
     /**

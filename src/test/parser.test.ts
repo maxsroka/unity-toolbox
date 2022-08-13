@@ -569,6 +569,49 @@ suite("parser", () => {
 
             assert.equal(is, true);
         });
+
+        test("method with two brackets", () => {
+            const is = parser.isLineOnBracketsLevel([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "   void Start() { }",
+                "}",
+            ], 3, 4);
+
+            assert.equal(is, true);
+        });
+
+        test("method with one bracket", () => {
+            const is = parser.isLineOnBracketsLevel([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "   void Start() {",
+                "       ",
+                "   }",
+                "}",
+            ], 3, 4);
+
+            assert.equal(is, false);
+        });
+
+        test("method closing", () => {
+            const is = parser.isLineOnBracketsLevel([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour",
+                "{",
+                "   void Start() {",
+                "       ",
+                "   }",
+                "}",
+            ], 3, 6);
+
+            assert.equal(is, false);
+        });
     });
 
     suite("isInBehaviour", () => {
@@ -630,6 +673,20 @@ suite("parser", () => {
                 "",
                 "public class Test : MonoBehaviour {",
                 "",
+                "}",
+            ], 3);
+
+            assert.equal(is, true);
+        });
+
+        test("method with curly bracket", () => {
+            const is = parser.isInBehaviour([
+                "using UnityEngine;",
+                "",
+                "public class Test : MonoBehaviour {",
+                "   void Start() {",
+                "       ",
+                "   }",
                 "}",
             ], 3);
 
