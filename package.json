@@ -50,6 +50,11 @@
           "default": "new line",
           "description": "Changes how the first curly bracket is inserted in snippets."
         },
+        "unityToolbox.codeSnippets.methodModifiers": {
+          "type": "string",
+          "default": "",
+          "description": "Add modifiers to the method snippets. The trailing whitespace is required.\ne.g. \"public \", \"protected virtual \""
+        },
         "unityToolbox.codeSnippets.requiredClass": {
           "enum": [
             "MonoBehaviour or NetworkBehaviour",

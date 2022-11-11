@@ -28,6 +28,7 @@ export class UnityMessageSnippetsProvider implements CompletionItemProvider {
             item.documentation = msg.description;
 
             let snippet = applyBracketsStyle(msg.body, 0).join("\n");
+            snippet = applyModifiers(snippet);
             item.insertText = new SnippetString(snippet);
 
             items.push(item);
@@ -66,6 +67,11 @@ function applyBracketsStyle(body: string[], definitionLine: number): string[] {
     }
 
     return snippet;
+}
+
+function applyModifiers(snippet: string): string {
+    const modifiers = workspace.getConfiguration("unityToolbox").get("codeSnippets.methodModifiers");
+    return modifiers + snippet;
 }
 
 export class ScriptTemplatesSnippetsProvider implements CompletionItemProvider {
