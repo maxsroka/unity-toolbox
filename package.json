@@ -41,7 +41,7 @@
     "configuration": {
       "title": "Unity Toolbox",
       "properties": {
-        "unityToolbox.bracketsStyle": {
+        "unityToolbox.codeSnippets.bracketsStyle": {
           "enum": [
             "new line",
             "same line, with space",
@@ -49,6 +49,33 @@
           ],
           "default": "new line",
           "description": "Changes how the first curly bracket is inserted in snippets."
+        },
+        "unityToolbox.codeSnippets.requiredClass": {
+          "enum": [
+            "MonoBehaviour or NetworkBehaviour",
+            "any derived class",
+            "any class"
+          ],
+          "default": "MonoBehaviour or NetworkBehaviour",
+          "description": "Enable code snippets in ..."
+        },
+        "unityToolbox.codeLens.requiredClass": {
+          "enum": [
+            "MonoBehaviour or NetworkBehaviour",
+            "any derived class",
+            "any class"
+          ],
+          "default": "MonoBehaviour or NetworkBehaviour",
+          "description": "Enable codeLens in ..."
+        },
+        "unityToolbox.hover.requiredClass": {
+          "enum": [
+            "MonoBehaviour or NetworkBehaviour",
+            "any derived class",
+            "any class"
+          ],
+          "default": "MonoBehaviour or NetworkBehaviour",
+          "description": "Enable hover in ..."
         }
       }
     },

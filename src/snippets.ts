@@ -6,14 +6,15 @@ import * as templates from "./script-templates.json";
 export class UnityMessageSnippetsProvider implements CompletionItemProvider {
     provideCompletionItems(doc: TextDocument, pos: Position, token: CancellationToken, ctx: CompletionContext): ProviderResult<CompletionItem[] | CompletionList<CompletionItem>> {
         const lines = doc.getText().split("\n");
-        if (!parser.isInBehaviour(lines, pos.line)) return;
 
-        const behaviour = parser.findBehaviour(lines);
-        if (behaviour === undefined) return;
-        const openingLine = parser.findOpeningBracket(lines, behaviour);
-        if (openingLine === undefined) return;
+        const requiredClass = workspace.getConfiguration("unityToolbox").get("codeSnippets.requiredClass");
+        const baseClass = parser.getBaseClass(lines, pos.line);
 
-        if (!parser.isLineOnBracketsLevel(lines, openingLine, pos.line)) return;
+        if (baseClass === undefined) return;
+
+        if (requiredClass === "any derived class" && baseClass === "") return;
+
+        if (requiredClass === "MonoBehaviour or NetworkBehaviour" && baseClass !== "MonoBehaviour" && baseClass !== "NetworkBehaviour") return;
 
         const items = [];
         const existingMethods = parser.findAllMethodsNames(lines);
@@ -44,7 +45,7 @@ enum BracketsStyle {
 
 function applyBracketsStyle(body: string[], definitionLine: number): string[] {
     let snippet: string[];
-    const bracketsStyle = workspace.getConfiguration("unityToolbox").get("bracketsStyle");
+    const bracketsStyle = workspace.getConfiguration("unityToolbox").get("codeSnippets.bracketsStyle");
 
     if (bracketsStyle === BracketsStyle.NewLine) {
         snippet = body;

@@ -1,4 +1,4 @@
-import { CancellationToken, CodeLens, CodeLensProvider, Command, Position, ProviderResult, TextDocument } from 'vscode';
+import { CancellationToken, CodeLens, CodeLensProvider, Command, Position, ProviderResult, TextDocument, workspace } from 'vscode';
 import { parser } from './extension';
 
 export default class UnityMessageCodeLensProvider implements CodeLensProvider {
@@ -10,15 +10,15 @@ export default class UnityMessageCodeLensProvider implements CodeLensProvider {
             const line = lines[i];
 
             if (!parser.hasUnityMessage(line)) continue;
-            if (!parser.isInBehaviour(lines, i)) continue;
 
-            const behaviour = parser.findBehaviour(lines);
-            if (behaviour === undefined) continue;
-            const openingLine = parser.findOpeningBracket(lines, behaviour);
-            if (openingLine === undefined) continue;
+            const requiredClass = workspace.getConfiguration('unityToolbox').get('codeLens.requiredClass');
+            const baseClass = parser.getBaseClass(lines, i);
 
-            if (!parser.isLineOnBracketsLevel(lines, openingLine, i) && parser.findMethodsName(line) === undefined) continue;
-            // ^ is on the brackets level or method definition 
+            if (baseClass === undefined) continue;
+
+            if (requiredClass === "any derived class" && baseClass === "") continue;
+
+            if (requiredClass === "MonoBehaviour or NetworkBehaviour" && baseClass !== "MonoBehaviour" && baseClass !== "NetworkBehaviour") continue;
 
             let cmd: Command = {
                 command: "",
