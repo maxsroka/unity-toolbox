@@ -31,6 +31,7 @@ export default class Parser {
     getBaseClass(lines: string[], thisLine: number): string | undefined {
         if (thisLine >= lines.length) return undefined;
 
+        // Find the closest opening bracket containing this line.
         let count = 0;
         let i = thisLine - 1;
         for (; i > 0; i--) {
@@ -39,23 +40,27 @@ export default class Parser {
             if (line.includes("{")) {
                 count += 1;
             }
-
             if (line.includes("}")) {
                 count -= 1;
             }
-
-            if (count === 1) {
+            if (count === 1) {  // Found
                 break;
             }
         }
 
-        let matchClass = new RegExp(/class\s*(.*?)[\s|\,|\{]/);
-        let matchBaseClass = new RegExp(/class.*:\s*(.*?)[\s|\,|\{]/);
+        // Match the class.
+        const matchClass = new RegExp(/class\s*(.*?)[\s|\,|\{]/);
+        const matchBaseClass = new RegExp(/class.*:\s*(.*?)[\s|\,|\{]/);
         for (; i > 0; i--) {
             const line = lines[i];
+
+            // If these characters are found, it's not a valid class.
             if (line.includes("\"") || line.includes("'") || line.includes(";") || line.includes("}"))
                 return undefined;
+
+            // Match the class definition.
             if (line.match(matchClass) != null) {
+                // Match the base class.
                 const matches = line.match(matchBaseClass);
                 return matches === null ? "" : matches[1];
             }
