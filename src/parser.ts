@@ -23,6 +23,46 @@ export default class Parser {
     }
 
     /**
+     * Get the base class of the class that this line is in.
+     * @returns undefined if no valid class.
+     * @returns empty string if no base class.
+     * @returns the base class name.
+     */
+    getBaseClass(lines: string[], thisLine: number): string | undefined {
+        if (thisLine >= lines.length) return undefined;
+
+        let count = 0;
+        let i = thisLine - 1;
+        for (; i > 0; i--) {
+            const line = lines[i];
+
+            if (line.includes("{")) {
+                count += 1;
+            }
+
+            if (line.includes("}")) {
+                count -= 1;
+            }
+
+            if (count === 1) {
+                break;
+            }
+        }
+
+        let matchClass = new RegExp(/class\s*(.*?)[\s|\,|\{]/);
+        let matchBaseClass = new RegExp(/class.*:\s*(.*?)[\s|\,|\{]/);
+        for (; i > 0; i--) {
+            const line = lines[i];
+            if (line.includes("\"") || line.includes("'") || line.includes(";") || line.includes("}"))
+                return undefined;
+            if (line.match(matchClass) != null) {
+                const matches = line.match(matchBaseClass);
+                return matches === null ? "" : matches[1];
+            }
+        }
+    }
+
+    /**
      * Checks if there is a Unity message in a line.
      */
     hasUnityMessage(line: string): boolean {
