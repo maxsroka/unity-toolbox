@@ -47,7 +47,7 @@
             "[CustomEditor(typeof($1))]",
             "public class $1Editor : Editor",
             "{",
-            "   $0",
+            "\t$0",
             "}"
         ]
     }
