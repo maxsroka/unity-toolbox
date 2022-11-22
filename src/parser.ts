@@ -4,6 +4,7 @@ export default class Parser {
     private findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
     private findMethodNameExp = new RegExp(/void *(.*?) *\(.*\)/);
     private hasUnityMessageExp: RegExp;
+    private hasUnityMessageIEnumeratorExp: RegExp;
 
     constructor() {
         let methodsNames = "";
@@ -20,13 +21,14 @@ export default class Parser {
 
         this.hasUnityMessageExp = new RegExp("void *(" + methodsNames + ") *\\(.*\\)");
         // ^ needs double escape (\\) because a single one would get lost when adding strings
+        this.hasUnityMessageIEnumeratorExp = new RegExp("IEnumerator *Start *\(\)");
     }
 
     /**
      * Checks if there is a Unity message in a line.
      */
     hasUnityMessage(line: string): boolean {
-        return this.hasUnityMessageExp.test(line);
+        return this.hasUnityMessageExp.test(line) || this.hasUnityMessageIEnumeratorExp.test(line);
     }
 
     /**

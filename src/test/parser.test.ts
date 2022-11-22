@@ -151,6 +151,18 @@ suite("parser", () => {
 
             assert.equal(has, false);
         });
+
+        test("start ienumerator", () => {
+            const has = parser.hasUnityMessage("IEnumerator Start()");
+
+            assert.equal(has, true);
+        })
+
+        test("other ienumerator", () => {
+            const has = parser.hasUnityMessage("IEnumerator Update()");
+
+            assert.equal(has, false);
+        })
     });
 
     suite("findBehaviour", () => {
