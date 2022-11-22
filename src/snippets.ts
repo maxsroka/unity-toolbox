@@ -73,7 +73,7 @@ export class ScriptTemplatesSnippetsProvider implements CompletionItemProvider {
 
         for (const template of templates) {
             const item = new CompletionItem(template.name);
-            item.kind = CompletionItemKind.Class;
+            item.kind = CompletionItemKind.Snippet;
             item.detail = `${template.name} (Script Template)`;
             item.documentation = template.description;
 
