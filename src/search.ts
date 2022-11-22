@@ -6,5 +6,5 @@ export default function searchInUnityDocumentation() {
 
     const selection = editor.document.getText(editor.selection);
 
-    commands.executeCommand("vscode.open", Uri.parse(`https://docs.unity3d.com/Manual/30_search.html?q=${selection}`))
+    commands.executeCommand("vscode.open", Uri.parse(`https://docs.unity3d.com/ScriptReference/30_search.html?q=${selection}`))
 }
