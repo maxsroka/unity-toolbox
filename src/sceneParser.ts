@@ -24,14 +24,6 @@ export default class SceneParser {
                 this.scripts.push(file);
             }
         }
-
-        for (const script of this.scripts) {
-            console.log("script: " + script);
-        }
-
-        for (const scene of this.scenes) {
-            console.log("scene: " + scene);
-        }
     }
 
     findSceneReferences(guid: string): string[] {
@@ -58,7 +50,6 @@ export default class SceneParser {
         const matches = meta.match(this.guidExp);
         if (matches === null) return undefined;
 
-        console.log(matches[1]);
         return matches[1];
     }
 

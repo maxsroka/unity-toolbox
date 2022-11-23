@@ -47,23 +47,31 @@ export class UsedInCodeLensProvider implements CodeLensProvider {
         if (guid === undefined) return;
         const refs = sceneParser.findSceneReferences(guid);
 
+        let title = "";
         if (refs.length == 0) {
-            return;
+            title = "0 scene usages";
+        } else if (refs.length == 1) {
+            title = "1 scene usage";
+        } else if (refs.length < 10) {
+            title = `${refs.length} scene usages`;
+        } else {
+            title = `9+ scene usages`;
         }
 
-        let title = "";
-        if (refs.length == 1) {
-            title = "1 scene";
-        } else if (refs.length < 10) {
-            title = `${refs.length} scenes`;
-        } else {
-            title = `9+ scenes`;
+        let tooltip = "";
+        for (const scene of refs) {
+            let name = scene;
+            name = name.slice(0, scene.length - 6); // remove .unity
+            name = name.substring(name.indexOf("Assets\\"))
+            name += "\n";
+
+            tooltip += name;
         }
 
         const cmd: Command = {
             command: "",
-            title: `$(repo) used in ${title}`,
-            tooltip: "asd",
+            title: title,
+            tooltip: tooltip,
         };
 
         list.push(new CodeLens(doc.lineAt(behaviour).range, cmd));
