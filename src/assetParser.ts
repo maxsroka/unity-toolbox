@@ -2,14 +2,16 @@ import * as fs from "fs";
 import { workspace } from "vscode";
 import * as path from "path";
 
-export default class SceneParser {
+export default class AssetParser {
     scripts: string[] = []
     scenes: string[] = []
+    prefabs: string[] = []
     guidExp = new RegExp(/guid: (.*)/);
 
     refresh() {
         this.scripts = [];
         this.scenes = [];
+        this.prefabs = [];
 
         const workspaceFolders = workspace.workspaceFolders;
         if (workspaceFolders === undefined) return;
@@ -22,22 +24,24 @@ export default class SceneParser {
                 this.scenes.push(file);
             } else if (file.endsWith(".cs.meta")) {
                 this.scripts.push(file);
+            } else if (file.endsWith(".prefab")) {
+                this.prefabs.push(file);
             }
         }
     }
 
-    findSceneReferences(guid: string): string[] {
-        const scenes = [];
+    findReferences(guid: string, files: string[]): string[] {
+        const result = [];
 
-        for (const scene of this.scenes) {
-            const content = fs.readFileSync(scene, "utf-8");
+        for (const file of files) {
+            const content = fs.readFileSync(file, "utf-8");
 
             if (content.includes(guid)) {
-                scenes.push(scene);
+                result.push(file);
             }
         }
 
-        return scenes;
+        return result;
     }
 
     getGuid(filePath: string): string | undefined {
