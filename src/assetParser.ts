@@ -21,15 +21,11 @@ export default class AssetParser {
 
         const watcher = workspace.createFileSystemWatcher("**/*.{unity,cs.meta,prefab}");
         watcher.onDidCreate((uri) => {
-            console.log("create");
             this.tryAdd(uri.fsPath);
-            console.log(this.scripts.size);
         });
 
         watcher.onDidDelete((uri) => {
-            console.log("delete");
             this.tryRemove(uri.fsPath);
-            console.log(this.scripts.size);
         })
     }
 
