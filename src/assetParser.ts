@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { RelativePattern, TextDocumentChangeReason, Uri, workspace, WorkspaceEdit } from "vscode";
+import { workspace } from "vscode";
 import * as path from "path";
 
 export default class AssetParser {
@@ -14,7 +14,6 @@ export default class AssetParser {
         const assets = path.join(workspaceFolders[0].uri.fsPath, "Assets");
 
         const files = this.getFilesInDir(assets);
-
         for (const file of files) {
             this.tryAdd(file);
         }
