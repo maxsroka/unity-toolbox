@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { Uri, workspace, WorkspaceEdit } from "vscode";
+import { RelativePattern, TextDocumentChangeReason, Uri, workspace, WorkspaceEdit } from "vscode";
 import * as path from "path";
 
 export default class AssetParser {
@@ -19,19 +19,18 @@ export default class AssetParser {
             this.tryAdd(file);
         }
 
-        workspace.onDidCreateFiles((ev) => {
-            for (const file of files) {
-                this.tryAdd(file);
-            }
+        const watcher = workspace.createFileSystemWatcher("**/*.{unity,cs.meta,prefab}");
+        watcher.onDidCreate((uri) => {
+            console.log("create");
+            this.tryAdd(uri.fsPath);
+            console.log(this.scripts.size);
         });
 
-        workspace.onDidDeleteFiles((ev) => {
-
-        });
-
-        workspace.onDidRenameFiles((ev) => {
-
-        });
+        watcher.onDidDelete((uri) => {
+            console.log("delete");
+            this.tryRemove(uri.fsPath);
+            console.log(this.scripts.size);
+        })
     }
 
     tryAdd(file: string) {
@@ -49,20 +48,19 @@ export default class AssetParser {
         return false;
     }
 
-    // tryRemove(file: string) {
+    tryRemove(file: string) {
+        if (this.tryRemoveParticular(file, ".cs.meta", this.scripts)) return;
+        if (this.tryRemoveParticular(file, ".prefab", this.prefabs)) return;
+        if (this.tryRemoveParticular(file, ".unity", this.scenes)) return;
+    }
 
-    // }
+    tryRemoveParticular(file: string, extension: string, files: Set<string>): boolean {
+        if (file.endsWith(extension)) {
+            return files.delete(file);
+        }
 
-    // tryRemoveParticular(file: string, extension: string, files: string[]) {
-    //     if (file.endsWith(extension)) {
-    //         if (!files.includes(file)) {
-    //             files(file);
-    //             return true;
-    //         }
-    //     }
-
-    //     return false;
-    // }
+        return false;
+    }
 
     findReferences(guid: string, files: Set<string>): string[] {
         const result = [];
