@@ -2,7 +2,7 @@ import * as messages from "./unity-messages.json";
 
 export default class Parser {
     private findBehaviourExp = new RegExp(/class.*: *(Mono|Network)Behaviour/);
-    private findMethodNameExp = new RegExp(/void *(.*?) *\(.*\)/);
+    private findMethodNameExp = new RegExp(/(?:void|IEnumerator) *(.*?) *\(.*\)/);
     private hasUnityMessageExp: RegExp;
     private hasUnityMessageIEnumeratorExp = new RegExp("IEnumerator *Start *\(\)");
 

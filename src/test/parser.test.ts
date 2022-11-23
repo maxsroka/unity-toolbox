@@ -74,6 +74,12 @@ suite("parser", () => {
 
             assert.equal(name, undefined);
         });
+
+        test("ienumerator", () => {
+            const name = parser.findMethodsName("IEnumerator Test()");
+
+            assert.equal(name, "Test");
+        });
     });
 
     suite("hasUnityMessage", () => {
