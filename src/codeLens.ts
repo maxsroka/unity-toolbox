@@ -51,18 +51,18 @@ export class UsedInCodeLensProvider implements CodeLensProvider {
             return;
         }
 
-        let text = "";
+        let title = "";
         if (refs.length == 1) {
-            text = "1 scene";
+            title = "1 scene";
         } else if (refs.length < 10) {
-            text = `${refs.length} scenes`;
+            title = `${refs.length} scenes`;
         } else {
-            text = `9+ scenes`;
+            title = `9+ scenes`;
         }
 
         const cmd: Command = {
             command: "",
-            title: `$(list-unordered) used in ${text}`,
+            title: `$(repo) used in ${title}`,
             tooltip: "asd",
         };
 
