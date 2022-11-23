@@ -1,7 +1,8 @@
 import { CancellationToken, CodeLens, CodeLensProvider, Command, Position, ProviderResult, TextDocument } from 'vscode';
 import { parser } from './extension';
+import { sceneParser } from './extension';
 
-export default class UnityMessageCodeLensProvider implements CodeLensProvider {
+export class UnityMessageCodeLensProvider implements CodeLensProvider {
     provideCodeLenses(doc: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
         const lines = doc.getText().split('\n');
         const list = [];
@@ -28,6 +29,44 @@ export default class UnityMessageCodeLensProvider implements CodeLensProvider {
 
             list.push(new CodeLens(doc.lineAt(i).range, cmd));
         }
+
+        return list;
+    }
+}
+
+export class UsedInCodeLensProvider implements CodeLensProvider {
+    provideCodeLenses(doc: TextDocument, token: CancellationToken): ProviderResult<CodeLens[]> {
+        const lines = doc.getText().split('\n');
+        const list = [];
+
+        const behaviour = parser.findBehaviour(lines);
+        if (behaviour === undefined) return;
+
+        sceneParser.refresh();
+        const guid = sceneParser.getGuid(doc.fileName);
+        if (guid === undefined) return;
+        const refs = sceneParser.findSceneReferences(guid);
+
+        if (refs.length == 0) {
+            return;
+        }
+
+        let text = "";
+        if (refs.length == 1) {
+            text = "1 scene";
+        } else if (refs.length < 10) {
+            text = `${refs.length} scenes`;
+        } else {
+            text = `9+ scenes`;
+        }
+
+        const cmd: Command = {
+            command: "",
+            title: `$(list-unordered) used in ${text}`,
+            tooltip: "asd",
+        };
+
+        list.push(new CodeLens(doc.lineAt(behaviour).range, cmd));
 
         return list;
     }
