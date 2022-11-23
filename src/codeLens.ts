@@ -39,7 +39,6 @@ export class UsagesCodeLensProvider implements CodeLensProvider {
         const lines = doc.getText().split('\n');
         const list = [];
 
-        assetParser.refresh();
         const guid = assetParser.getGuid(doc.fileName);
         if (guid === undefined) return;
 
