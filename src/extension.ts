@@ -4,9 +4,11 @@ import { UnityMessageSnippetsProvider, ScriptTemplatesSnippetsProvider } from ".
 import UnityMessageHoverProvider from "./hover";
 import Parser from './parser';
 import searchInUnityDocumentation from './search';
+import SceneParser from './sceneParser';
 
 export const debug = window.createOutputChannel("Unity Toolbox");
 export const parser = new Parser();
+export const sceneParser = new SceneParser();
 
 export function activate(ctx: ExtensionContext) {
     languages.registerCodeLensProvider({ language: "csharp" }, new UnityMessageCodeLensProvider());
