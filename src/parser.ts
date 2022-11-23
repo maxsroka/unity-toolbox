@@ -43,7 +43,7 @@ export default class Parser {
     }
 
     /**
-     * Finds the first line with `MonoBehaviour` or `NetworkBehaviour` definition.
+     * Finds the first line with a `MonoBehaviour` or a `NetworkBehaviour` definition.
      */
     findBehaviour(lines: string[]): number | undefined {
         for (let i = 0; i < lines.length; i++) {
@@ -56,7 +56,7 @@ export default class Parser {
     }
 
     /**
-     * Finds the line with the closing curly bracket.
+     * Finds the line of a closing curly bracket.
      */
     findClosingBracket(lines: string[], openingBracketLine: number): number | undefined {
         let count = 0;
@@ -108,7 +108,7 @@ export default class Parser {
     }
 
     /**
-     * Returns if a line is on the top level inside curly brackets pair.
+     * Returns if a line is on the top level inside a curly brackets pair.
      */
     isLineOnBracketsLevel(lines: string[], openingBracketLine: number, lineIndex: number): boolean {
         let count = 0;
@@ -132,7 +132,7 @@ export default class Parser {
     }
 
     /**
-     * Checks if a line is inside a `MonoBehaviour` or `NetworkBehaviour`. 
+     * Checks if a line is inside a `MonoBehaviour` or a `NetworkBehaviour`. 
      */
     isInBehaviour(lines: string[], line: number): boolean {
         const behaviourLine = this.findBehaviour(lines);
