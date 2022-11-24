@@ -49,6 +49,11 @@
           ],
           "default": "new line",
           "description": "Changes how the first curly bracket is inserted in snippets."
+        },
+        "unityToolbox.privateAccessModifier": {
+          "type": "boolean",
+          "default": false,
+          "description": "Changes whether the private access modifier is inserted in snippets."
         }
       }
     },

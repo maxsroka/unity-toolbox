@@ -26,8 +26,10 @@ export class UnityMessageSnippetsProvider implements CompletionItemProvider {
             item.detail = `${msg.name} (Unity Message)`;
             item.documentation = msg.description;
 
-            let snippet = applyBracketsStyle(msg.body, 0).join("\n");
-            item.insertText = new SnippetString(snippet);
+            let snippet = applyBracketsStyle([...msg.body], 0);
+            applyPrivateAccessModifier(snippet, 0);
+
+            item.insertText = new SnippetString(snippet.join("\n"));
 
             items.push(item);
         }
@@ -65,6 +67,13 @@ function applyBracketsStyle(body: string[], definitionLine: number): string[] {
     }
 
     return snippet;
+}
+
+function applyPrivateAccessModifier(body: string[], definitionLine: number) {
+    const apply = workspace.getConfiguration("unityToolbox").get("privateAccessModifier");
+    if (!apply) return;
+
+    body[definitionLine] = "private " + body[definitionLine];
 }
 
 export class ScriptTemplatesSnippetsProvider implements CompletionItemProvider {
