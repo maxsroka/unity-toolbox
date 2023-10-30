@@ -1,0 +1,226 @@
+[
+    {
+        "name": "MonoBehaviour",
+        "category": "Basic",
+        "prefix": [
+            "monobehaviour"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "",
+            "public class $TM_FILENAME_BASE : MonoBehaviour",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "ScriptableObject",
+        "category": "Basic",
+        "prefix": [
+            "scriptableobject"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "",
+            "[CreateAssetMenu(menuName = \"${2:$WORKSPACE_NAME}/${1:$TM_FILENAME_BASE}\")]",
+            "public class $TM_FILENAME_BASE : ScriptableObject",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "Editor",
+        "category": "Editor",
+        "prefix": [
+            "editor"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "using UnityEditor;",
+            "using UnityEngine.UIElements;",
+            "using UnityEditor.UIElements;",
+            "",
+            "[CustomEditor(typeof($1))]",
+            "public class $TM_FILENAME_BASE : Editor",
+            "{",
+            "\tpublic override VisualElement CreateInspectorGUI()",
+            "\t{",
+            "\t\t${0:throw new System.NotImplementedException();}",
+            "\t}",
+            "}"
+        ]
+    },
+    {
+        "name": "EditorWindow",
+        "category": "Editor",
+        "prefix": [
+            "editorwindow"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "using UnityEditor;",
+            "using UnityEngine.UIElements;",
+            "using UnityEditor.UIElements;",
+            "",
+            "public class $TM_FILENAME_BASE : EditorWindow",
+            "{",
+            "\t[MenuItem(\"Tools/$TM_FILENAME_BASE\")]",
+            "\tpublic static void ShowEditorWindow()",
+            "\t{",
+            "\t\tGetWindow<$TM_FILENAME_BASE>();",
+            "\t}",
+            "",
+            "\tpublic void CreateGUI()",
+            "\t{",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ]
+    },
+    {
+        "name": "PropertyDrawer",
+        "category": "Editor",
+        "prefix": [
+            "propertydrawer"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "using UnityEditor;",
+            "using UnityEngine.UIElements;",
+            "using UnityEditor.UIElements;",
+            "",
+            "[CustomPropertyDrawer(typeof($1))]",
+            "public class $TM_FILENAME_BASE : PropertyDrawer",
+            "{",
+            "\tpublic override VisualElement CreatePropertyGUI(SerializedProperty property)",
+            "\t{",
+            "\t\t${0:throw new System.NotImplementedException();}",
+            "\t}",
+            "}"
+        ]
+    },
+    {
+        "name": "IJob",
+        "category": "Jobs",
+        "prefix": [
+            "ijob"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "using Unity.Collections;",
+            "using Unity.Mathematics;",
+            "using Unity.Burst;",
+            "using Unity.Jobs;",
+            "",
+            "public struct $TM_FILENAME_BASE : IJob",
+            "{",
+            "\tpublic void Execute()",
+            "\t{",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ]
+    },
+    {
+        "name": "IJobFor",
+        "category": "Jobs",
+        "prefix": [
+            "ijobfor"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "using Unity.Collections;",
+            "using Unity.Mathematics;",
+            "using Unity.Burst;",
+            "using Unity.Jobs;",
+            "",
+            "public struct $TM_FILENAME_BASE : IJobFor",
+            "{",
+            "\tpublic void Execute(int index)",
+            "\t{",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ]
+    },
+    {
+        "name": "IJobParallelFor",
+        "category": "Jobs",
+        "prefix": [
+            "ijobparallelfor"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "using Unity.Collections;",
+            "using Unity.Mathematics;",
+            "using Unity.Burst;",
+            "using Unity.Jobs;",
+            "",
+            "public struct $TM_FILENAME_BASE : IJobParallelFor",
+            "{",
+            "\tpublic void Execute(int index)",
+            "\t{",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ]
+    },
+    {
+        "name": "IComponentData",
+        "category": "Entities",
+        "package": "com.unity.entities",
+        "prefix": [
+            "icomponentdata"
+        ],
+        "body": [
+            "using Unity.Entities;",
+            "",
+            "public ${1|struct,class|} $TM_FILENAME_BASE : IComponentData",
+            "{",
+            "\t$0",
+            "}"
+        ]
+    },
+    {
+        "name": "ISystem",
+        "category": "Entities",
+        "package": "com.unity.entities",
+        "prefix": [
+            "isystem"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "using Unity.Entities;",
+            "",
+            "public partial struct $TM_FILENAME_BASE : ISystem",
+            "{",
+            "\tpublic void OnUpdate(ref SystemState state)",
+            "\t{",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ]
+    },
+    {
+        "name": "SystemBase",
+        "category": "Entities",
+        "package": "com.unity.entities",
+        "prefix": [
+            "systembase"
+        ],
+        "body": [
+            "using UnityEngine;",
+            "using Unity.Entities;",
+            "",
+            "public partial class $TM_FILENAME_BASE : SystemBase",
+            "{",
+            "\tprotected override void OnUpdate()",
+            "\t{",
+            "\t\t$0",
+            "\t}",
+            "}"
+        ]
+    }
+]
