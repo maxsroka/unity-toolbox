@@ -1,3 +1,4 @@
+<h2><b><a href='https://assetstore.unity.com/packages/slug/282103'>📢 JUST RELEASED: My new project is live on the Unity Asset Store! Discover it now! 📢</a></b></h2>
 <div align="center">
 <img src="assets/unity-toolbox.png" width="128px" height="128px">
 <h1>Unity Toolbox</h1>
