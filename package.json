@@ -2,7 +2,7 @@
   "name": "unity-toolbox",
   "displayName": "Unity Toolbox",
   "description": "Awesome tools for VSCode & Unity",
-  "version": "100.0.3",
+  "version": "100.0.4",
   "publisher": "pixl",
   "icon": "./assets/unity-toolbox.png",
   "repository": {
